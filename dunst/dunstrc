@@ -33,8 +33,8 @@
     min_icon_size = 0
     max_icon_size = 64
 
-    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/16x16/actions/:/usr/share/icons/Papirus-Dark/16x16/animations/:/usr/share/icons/Papirus-Dark/16x16/apps/:/usr/share/icons/Papirus-Dark/16x16/categories/:/usr/share/icons/Papirus-Dark/16x16/emblems/:/usr/share/icons/Papirus-Dark/16x16/emotes/:/usr/share/icons/Papirus-Dark/16x16/devices/mimetypes:/usr/share/icons/Papirus-Dark/16x16/panel/:/usr/share/icons/Papirus-Dark/16x16/places/
-
+    icon_path = /usr/share/icons/Gruvbox-Plus-Dark/status/16/:/usr/share/icons/Gruvbox-Plus-Dark/devices/16/:/usr/share/icons/Gruvbox-Plus-Dark/actions/16/:/usr/share/icons/Gruvbox-Plus-Dark/animations/22/:/usr/share/icons/Gruvbox-Plus-Dark/apps/16/:/usr/share/icons/Gruvbox-Plus-Dark/categories/16/:/usr/share/icons/Gruvbox-Plus-Dark/devices/16/:/usr/share/icons/Gruvbox-Plus-Dark/emotes/16/:/usr/share/icons/Gruvbox-Plus-Dark/mimetypes/16/:/usr/share/icons/Gruvbox-Plus-Dark/panel/16/:/usr/share/icons/Gruvbox-Plus-Dark/places/16/
+    
     dmenu = /usr/bin/wofi -p dunst:
     browser = /usr/bin/vivaldi --new-tab
 
