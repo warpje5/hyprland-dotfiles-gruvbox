@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+
+import numpy as np
+from pathlib import Path
+import sys
+import json
+import math
+from functools import partial
+
+# Read config file
+fp = Path(sys.argv[0]).parent.resolve() / "config.json"
+if not fp.is_file():
+    print(f"ERROR: Configuration file {fp} not found")
+    sys.exit(1)
+with open(fp, "r") as fh:
+    global config
+    config = json.load(fh)
+assert(isinstance(config, dict))
+
+overlay_color = config["overlay_color"]
+surface_color = config["surface_color"]
+interval = config["interval"]
+digits = math.floor(math.log10(interval))
+digits = max(0, math.fabs(digits))
+digits = int(digits)
+print(f"Decimal points: {digits}")
+
+
+def myround(x,y):
+    return str(round(x,y))
+
+# Internals
+format_pc = partial(myround, y=digits+1)
+format_class = partial(myround, y=digits)
+outfp = Path(sys.argv[0]).parent.resolve() / "mediaplayer-progressbar.css"
+print(f"Writing output to {outfp}")
+
+outfh = open(outfp, "w", encoding="utf8")
+
+for i in np.arange(0, 100+interval, interval):
+    class_ = "perc" + format_class(i).replace(".", "-")
+    i2 = i + (interval / 10)
+    outfh.write(
+f"""#custom-mediaplayer.{class_} {{
+    background-image: linear-gradient(
+    to right,
+    {overlay_color} {format_pc(i)}%,
+    {surface_color} {format_pc(i2)}%
+    );
+}}\n"""
+    )
+
+outfh.close()
