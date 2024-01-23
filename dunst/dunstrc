@@ -4,8 +4,6 @@
 
     offset = 10x10
 
-    notification_height = 0
-
     separator_height = 2
 
     padding = 8
