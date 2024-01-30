@@ -38,12 +38,6 @@ tooltip {
     border-radius: 10px;
 }
 
-#workspaces button.urgent {
-    color: #cc241d;
-    background: #282828;
-    border-radius: 10px;
-}
-
 #workspaces button.persistent {
     color: #458588; 
     background: #282828;
@@ -56,6 +50,15 @@ tooltip {
     border: none;
 }
 
+#workspaces button:hover {
+    background: none;
+    border-color: transparent;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    color: #d79921;
+    border-radius: 10px;
+}
+
 #workspaces button.active,
 #workspaces button.visible {
     color: #ebdbb2; 
@@ -63,12 +66,9 @@ tooltip {
     border: none;
 }
 
-#workspaces button:hover {
-    background: none;
-    border-color: transparent;
-    box-shadow: inherit;
-    text-shadow: inherit;
-    color: #d79921;
+#workspaces button.urgent {
+    color: #cc241d;
+    background: #282828;
     border-radius: 10px;
 }
 
