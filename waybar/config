@@ -27,12 +27,28 @@
         "format": "{}"
     },
     "hyprland/workspaces": {
-        "disable-scroll": true,
+        "disable-scroll": false,
         "all-outputs": true,
+        "show-special": true,
         "on-click": "activate",
-        //"format": "{icon}",
+        "format": "{icon}",
+        "format-icons": {
+              "1": "",
+		          "2": "",
+		          "3": "",
+		          "4": "",
+		          "5": "󰭻",
+              "urgent": "",
+		          "default": "",
+              "magic": "󰐃",
+        },
         "persistent_workspaces": {
-        }
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+        },
     },
     "custom/updates": {
         "format": "󰚰 {}",
@@ -44,9 +60,9 @@
     },
     "hyprland/language": {
         "format": "{}",
-        "format-ru": "ru",
-        "format-us": "us",
-        "format-en": "us"
+        "format-ru": "Rus",
+        "format-us": "Eng",
+        "format-en": "Eng",
     },
     "custom/weather" : {
         "tooltip" : true,

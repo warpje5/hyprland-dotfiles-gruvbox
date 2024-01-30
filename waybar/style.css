@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Hack Nerd Font Mono;
+    font-family: Hack Nerd Font;
     font-weight: bold;
     font-size: 15px;
     min-height: 0;
@@ -21,9 +21,10 @@ tooltip {
 }
 
 #workspaces button {
-    padding: 5px;
     color: #665c54;
-	margin-right: 5px;
+    border: none;
+    background: #282828;
+  	margin-right: 5px;
 }
 
 #workspaces button.active {
@@ -44,7 +45,10 @@ tooltip {
 }
 
 #workspaces button:hover {
-    background: #282828;
+    background: none;
+    border-color: transparent;
+    box-shadow: inherit;
+    text-shadow: inherit;
     color: #ebdbb2;
     border-radius: 10px;
 }
