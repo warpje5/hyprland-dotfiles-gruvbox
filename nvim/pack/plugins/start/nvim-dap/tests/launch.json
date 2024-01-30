@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "request": "launch",
+            "name": "java test"
+        },
+        {
+            "type": "bar",
+            "request": "attach",
+            "name": "bar test"
+        }
+    ]
+}

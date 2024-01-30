@@ -1,0 +1,1304 @@
+DAP client                                           *dap.txt*
+
+
+nvim-dap is a Debug Adapter Protocol client, or "debugger", or "debug-frontend".
+
+With the help of a debug adapter it can:
+
+- Launch an application to debug
+- Attach to running applications to debug them
+- Set breakpoints and step through code
+- Inspect the state of the application
+
+A debug adapter is a facilitator between nvim-dap (the client), and a
+language-specific debugger:
+
+
+    DAP-Client ----- Debug Adapter ------- Debugger ------ Debugee
+    (nvim-dap)  |   (per language)  |   (per language)    (your app)
+                |                   |
+                |        Implementation specific communication
+                |        Debug adapter and debugger could be the same process
+                |
+         Communication via the Debug Adapter Protocol
+
+
+To debug applications, you need to configure two things per language:
+
+- A debug adapter (|dap-adapter|).
+- How to launch your application to debug or how to attach to a running
+  application (|dap-configuration|).
+
+
+Available debug adapters:
+  https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/
+
+Debug adapter configuration and installation instructions:
+  https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
+
+Debug Adapter Protocol:
+  https://microsoft.github.io/debug-adapter-protocol/
+
+                                      Type |gO| to see the table of contents.
+
+==============================================================================
+ADAPTER CONFIGURATION                                *dap-adapter*
+
+
+Neovim needs a debug adapter with which it can communicate. Neovim can either
+launch the debug adapter itself, or it can attach to an existing one.
+
+To tell Neovim if it should launch a debug adapter or connect to one, and if
+so, how, you need to configure them via the `dap.adapters` table. The key of
+the table is an arbitrary name that debug adapters are looked up by when using
+a |dap-configuration|.
+
+For example, to register the `debugpy` debug adapter under the type `python` you
+can add the following entry:
+
+>lua
+  local dap = require('dap')
+  dap.adapters.python = {
+    type = 'executable';
+    command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python';
+    args = { '-m', 'debugpy.adapter' };
+  }
+<
+
+`dap.adapters.<name>` is set to a `Adapter`.
+
+The `Adapter` needs to contain a `type`, which can be one of:
+
+- `executable`, to indicate that nvim-dap must launch the debug adapter. In
+  this case nvim-dap will spawn the given process and communicate with it using
+  stdio.
+
+- `server`, to connect to a debug adapter via TCP.
+  The adapter must be running, or started with a debug session via a
+  `executable` configuration of the adapter. See the options further below.
+
+- `pipe`, to connect to a adebug adapter via a unix domain socket or named pipe.
+  The adapter must be running, or started with a debug session via a
+  `executable` configuration of the adapter. See the options further below.
+
+For `executable` the following options are supported:
+
+>
+    command: string         -- command to invoke
+    args:    string[]       -- arguments for the command
+    options?: {
+      env?: {}              -- Set the environment variables for the command
+      cwd?: string          -- Set the working directory for the command
+      detached?: boolean    -- Spawn the debug adapter process in a detached state.
+                               Defaults to true.
+    }
+    id?: string             -- Identifier of the adapter. This is used for the
+                               `adapterId` property of the initialize request.
+                               For most debug adapters setting this is not
+                               necessary.
+
+For `server` the following options are supported:
+
+>
+    host?: string             -- host to connect to, defaults to 127.0.0.1
+    port:  number|"${port}"   -- port to connect to.
+                              -- If "${port}" nvim-dap resolves a free port.
+                              -- This is intended to be used with
+                              -- `executable.args` further below below
+    id?: string               -- Identifier of the adapter. This is used for the
+                                 `adapterId` property of the initialize request.
+                                  For most debug adapters setting this is not
+                                  necessary.
+
+    -- nvim-dap can optionally launch the debug-adapter on each new debug session
+    -- And then connect via TCP.
+    --
+    executable?: {
+      command: string       -- command that spawns the server
+      args?: string[]       -- command arguments
+                            -- ${port} used in the args is replaced with a
+                            -- dynamically resolved free port number
+      detached?: boolean    -- Spawn the debug adapter in detached mode.
+                            -- Defaults to true.
+      cwd?: string          -- Working directory
+    }
+
+    options?: {
+      max_retries?: number  -- Amount of times the client should attempt to
+                            -- connect before erroring out.
+                            -- There is a 250ms delay between each retry
+                            -- Defaults to 14 (3.5 seconds)
+    }
+
+
+For `pipe` the following options are supported:
+
+
+    pipe: string      -- Absolute path to the pipe file.
+                      -- If `${pipe}` nvim-dap generates a temporary filename
+                      -- that is intended for use with `executable`
+
+    -- nvim-dap can optionally launch the debug-adapter on each new debug session
+    -- And then connect to the socket or named pipe
+    executable?: {
+      command: string       -- command that spawns the server
+      args?: string[]       -- command arguments
+                            -- ${pipe} used in the args is replaced with a
+                            -- dynamically resolved temporary file
+      detached?: boolean    -- Spawn the debug adapter in detached mode.
+                            -- Defaults to true.
+      cwd?: string          -- Working directory
+    }
+
+
+All types support the following additional options:
+
+>
+    options?: {
+      initialize_timeout_sec?: number  -- How many seconds the client waits for a
+                                       -- response on a initialize request before
+                                       -- emitting a warning. Defaults to 4
+
+      disconnect_timeout_sec?: number  -- How many seconds the client waits for
+                                       -- a disconnect response from the debug
+                                       -- adapter before emitting a warning and
+                                       -- closing the connection. Defaults to 3
+
+      source_filetype?: string         -- The filetype to use for content
+                                       -- retrieved via a source request.
+
+
+`dap.adapters.<name>` can also be set to a function which takes three arguments:
+
+- A `on_config` callback. This must be called with the actual adapter table.
+- The |dap-configuration| which the user wants to use.
+- An optional parent session. This is only available if the debug-adapter
+  wants to start a child-session via a `startDebugging` request.
+
+
+This can be used to defer the resolving of the values to when a configuration
+is used. A use-case for this is starting an adapter asynchronous. For example,
+for java-debug:
+>
+>lua
+  dap.adapters.java = function(callback, config)
+    M.execute_command({command = 'vscode.java.startDebugSession'}, function(err0, port)
+      assert(not err0, vim.inspect(err0))
+      callback({ type = 'server'; host = '127.0.0.1'; port = port; })
+    end)
+  end
+<
+
+There is an additional `enrich_config` property available for both adapter
+types. This property is a function which allows an adapter to enrich a
+configuration with additional information. It receives a configuration as first
+argument, and a callback that must be called with the final configuration as
+second argument.
+
+An example use-case of this is the Java Debug Adapter, which can resolve
+classPaths or modulePaths dynamically, so that users don't have to do that.
+
+>lua
+  local adapter = {
+    type = 'server';
+    host = '127.0.0.1';
+    port = 8080;
+    enrich_config = function(config, on_config)
+      local final_config = vim.deepcopy(config)
+      final_config.extra_property = 'This got injected by the adapter'
+      on_config(final_config)
+    end;
+  }
+<
+
+==============================================================================
+DEBUGEE CONFIGURATION                                *dap-configuration*
+
+
+In addition to launching (possibly) and connecting to a debug adapter, Neovim
+needs to instruct the debug adapter itself how to launch and connect to the
+debugee. The debugee is the application you want to debug.
+
+This is controlled via a `Configuration`, which has 3 required fields:
+
+>
+    type: string        -- Which debug adapter to use.
+    request: string     -- Either `attach` or `launch`. Indicates whether the
+                        -- debug adapter should launch a debugee or attach to
+                        -- one that is already running.
+    name: string        -- A user-readable name for the configuration.
+<
+
+In addition, a `Configuration` accepts an arbitrary number of further options
+which are debug-adapter-specific.
+
+Configurations are set in the `dap.configurations` table. The keys are
+filetypes. If you run |dap-continue| it will look up configurations under the
+current filetype.
+
+For example:
+
+>lua
+    local dap = require('dap')
+    dap.configurations.python = {
+      {
+        type = 'python';
+        request = 'launch';
+        name = "Launch file";
+        program = "${file}";
+        pythonPath = function()
+          return '/usr/bin/python'
+        end;
+      },
+    }
+<
+
+Things to note:
+
+- Values for properties other than the 3 required properties `type`,
+  `request`, and `name` can be functions. If a value is given as a function,
+  the function will be evaluated to get the property value when the
+  configuration is used.
+
+  To support asynchronous operations, the function can return a `thread`
+  (created via `coroutine.create`) following two constraints:
+
+    - The coroutine/thread must be in a suspended state
+    - The coroutine/thread must resume the nvim-dap `run` coroutine with the
+      result
+
+  An example:
+
+>lua
+    foo = function()
+      return coroutine.create(function(dap_run_co)
+        local items = {'one', 'two'}
+        vim.ui.select(items, { label = 'foo> '}, function(choice)
+          coroutine.resume(dap_run_co, choice)
+        end)
+      end)
+    end,
+<
+
+- Functions for top level properties can return the `dap.ABORT` constant to
+  signal that you want to abort starting a debug session. An example:
+
+>lua
+    program = function()
+      local path = vim.fn.input({
+        prompt = 'Path to executable: ',
+        default = vim.fn.getcwd() .. '/',
+        completion = 'file'
+      })
+      return (path and path ~= "") and path or dap.ABORT
+    end
+<
+
+- The configuration can have an optional metatable with `__call`
+  implementation. The function will get called when the configuration is used
+  and it must return a new configuration table. This can be used to
+  dynamically add multiple properties at once.
+
+- Some variables are supported:
+  - `${file}`: Active filename
+  - `${fileBasename}`: The current file's basename
+  - `${fileBasenameNoExtension}`: The current file's basename without extension
+  - `${fileDirname}`: The current file's dirname
+  - `${fileExtname}`: The current file's extension
+  - `${relativeFile}`: The current file relative to |getcwd()|
+  - `${relativeFileDirname}`: The current file's dirname relative to |getcwd()|
+  - `${workspaceFolder}`: The current working directory of Neovim
+  - `${workspaceFolderBasename}`: The name of the folder opened in Neovim
+  - `${command:pickProcess}`: Open dialog to pick process using |vim.ui.select|
+  - `${env:Name}`: Environment variable named `Name`, for example: `${env:HOME}`.
+
+==============================================================================
+DEBUGEE CONFIGURATION via launch.json                *dap-launch.json*
+
+
+nvim-dap supports a subset of the `launch.json` file format used to configure
+debug adapters in Visual Studio Code.
+
+To load a `launch.json` file, use the `load_launchjs` function from the
+`dap.ext.vscode` module.
+
+Unlike VS Code, nvim-dap supports standard JSON. Trailing commas on the
+last item of a list are an error.
+
+If you install a 3rd-party json5 parser you can override the json decode
+function to support json5 features like trailing comma.
+>
+    require('dap.ext.vscode').json_decode = require'json5'.parse
+<
+(One json5 parser implementation is https://github.com/Joakker/lua-json5)
+
+
+load_launchjs({path}, {type_to_filetypes})        *dap.ext.vscode.load_launchjs*
+
+  Parses a JSON file at {path} and adds the entries to `dap.configurations`.
+  Configurations are overwritten by name, so if filetype and name matches a
+  configuration in `dap.configurations`, the config is overwritten by the
+  one loaded from the file at {path}.
+
+  Parameters:
+      {path}    Path to the `launch.json` file. Defaults to
+                `.vscode/launch.json` in the current working directory.
+
+      {type_to_filetypes}  A table mapping `type` values in `launch.json` to
+                           one or more filetypes.
+                           By default, the `type` values in `launch.json` will
+                           be used as filetypes verbatim.
+
+An example `launch.json` might look like this:
+
+>json
+  {
+      "version": "0.2.0",
+      "configurations": [
+          {
+              "type": "java",
+              "request": "launch",
+              "name": "Launch Java"
+          },
+          {
+              "type": "cppdbg",
+              "request": "launch",
+              "name": "Launch CPP"
+          }
+      ]
+  }
+<
+
+For the above configuration, calling `load_launchjs` adds the first entry to
+`dap.configurations.java` and the second entry to `dap.configurations.cppdbg`.
+If you wanted to add the second entry to the `c` or `cpp` configurations you
+could call `load_launchjs` like this instead:
+>
+>lua
+  require('dap.ext.vscode').load_launchjs(nil, { cppdbg = {'c', 'cpp'} })
+<
+
+load_launchjs supports `inputs`. Inputs can be used to define custom input prompts.
+They are declared in an "inputs" array and each input must have the following properties:
+
+- "id": the identifier of an input
+- "type": Either `pickString` or `promptString`
+- "description": Descriptive text shown to the user
+- "default": Default value (Defaults to '' if not provided)
+
+pickString` has an additional "options" property, which is an array of strings
+or an array of option objects with label and value:
+
+- [ "my value 1", "my value 2", "my value 3" ]
+- [ { "label": "my label", "value", "my value"} ]
+
+These are shown to the user as options.
+
+Inputs can be referenced with `${input:<id>}` placeholders.
+
+>json
+  {
+      "version": "0.2.0",
+      "configurations": [
+          {
+              "type": "python",
+              "request": "launch"
+              "name": "Launch",
+              "program": "${input:myPrompt}"
+          }
+      ],
+      "inputs": [
+          {
+              "id": "myPrompt",
+              "type": "pickString",
+              "description": "Program to run: ",
+              "default": "foobar"
+          }
+      ]
+  }
+<
+
+You can define system specific properties by placing them into a `linux`, `osx` or
+`windows` sub-object. An example:
+>json
+  {
+    "type": "cppdbg",
+    "request": "launch",
+    "name": "Launch CPP",
+    "linux": {
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb"
+    },
+    "osx": {
+      "MIMode": "lldb",
+      "miDebuggerPath": "/usr/local/bin/lldb-mi"
+    },
+    "windows": {
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:\\MinGw\\bin\\gdb.exe"
+    }
+  }
+<
+
+On `linux`, the final configuration will look like this:
+
+>json
+  {
+    "type": "cppdbg",
+    "request": "launch",
+    "name": "Launch CPP",
+    "MIMode": "gdb",
+    "miDebuggerPath": "/usr/bin/gdb"
+  }
+<
+
+And on `windows` it will look like this:
+
+>json
+  {
+    "type": "cppdbg",
+    "request": "launch",
+    "name": "Launch CPP",
+    "MIMode": "gdb",
+    "miDebuggerPath": "C:\\MinGw\\bin\\gdb.exe"
+  }
+<
+
+==============================================================================
+SIGNS CONFIGURATION
+
+
+nvim-dap uses five signs:
+
+- `DapBreakpoint` for breakpoints (default: `B`)
+- `DapBreakpointCondition` for conditional breakpoints (default: `C`)
+- `DapLogPoint` for log points (default: `L`)
+- `DapStopped` to indicate where the debugee is stopped (default: `→`)
+- `DapBreakpointRejected` to indicate breakpoints rejected by the debug
+  adapter (default: `R`)
+
+You can customize the signs by setting them with the |sign_define()| function.
+For example:
+
+>
+>lua
+  vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+<
+
+==============================================================================
+REPL COMPLETION                                               *dap-completion*
+
+
+nvim-dap includes an omnifunc implementation which uses the active debug
+session to get completion candidates.
+
+It is enabled by default in the REPL, which means you can use `CTRL-X CTRL-O`
+to trigger completion within the REPL.
+
+You can also configure completion to trigger automatically:
+
+>vim
+  au FileType dap-repl lua require('dap.ext.autocompl').attach()
+<
+
+Completion will then trigger automatically on any of the completion trigger
+characters reported by the debug adapter, or on `.` if none are reported.
+
+==============================================================================
+MAPPINGS                                             *dap-mappings*
+
+
+nvim-dap does not configure any mappings by default to avoid conflicts with
+user defined keymaps.
+
+Some example mappings you could configure:
+>lua
+    vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
+    vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
+    vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
+    vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
+    vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
+    vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
+    vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+    vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+    vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
+    vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+      require('dap.ui.widgets').hover()
+    end)
+    vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+      require('dap.ui.widgets').preview()
+    end)
+    vim.keymap.set('n', '<Leader>df', function()
+      local widgets = require('dap.ui.widgets')
+      widgets.centered_float(widgets.frames)
+    end)
+    vim.keymap.set('n', '<Leader>ds', function()
+      local widgets = require('dap.ui.widgets')
+      widgets.centered_float(widgets.scopes)
+    end)
+<
+
+==============================================================================
+CLIENT CONFIGURATION                                             *dap.defaults*
+
+nvim-dap has a few client configuration options which you can either set
+globally, or scoped to a specific "type" (from |dap-configuration|).
+
+The configuration values are set via `dap.defaults.fallback` (for global) or
+`dap.defaults.<type>`. The configuration options are:
+
+- `stepping_granularity`: (string) The default stepping granularity to use when
+  stepping. Defaults to `statement`, can be `statement`, `line` or
+  `instructions`.
+
+- `terminal_win_cmd`: (string|fun) The command used to create the window for
+  the integrated terminal. (See |dap-terminal|). Either a string or a function
+  that must return a buffer number and a window number of the buffer/window
+  for the terminal.
+
+  Note that extensions like `nvim-dap-ui` use this to control the UI.
+  If you customize it, you may break their behavior.
+
+- `focus_terminal`: (boolean) If the integrated terminal should get focus when
+  its created. Defaults to false
+
+- `auto_continue_if_many_stopped`. (boolean). Controls if a thread should
+  automatically resume on a stopped event if another thread is already
+  stopped. If your application uses multi-threading and you want multiple
+  threads to be able to stop, you may want to set this to false.
+  Defaults to true.
+
+- switchbuf. (string). Controls the behavior when jumping to a breakpoint.
+                       See |'switchbuf'|. Defaults to the global `'switchbuf'`
+                       setting.
+
+
+Some examples:
+>lua
+  local dap = require('dap')
+  -- Use "tabnew" for all debug adapters
+  dap.defaults.fallback.terminal_win_cmd = 'tabnew'
+  -- Except for python
+  dap.defaults.python.terminal_win_cmd = 'belowright new'
+
+  dap.defaults.java.auto_continue_if_many_stopped = false
+<
+
+==============================================================================
+TERMINAL CONFIGURATION                                          *dap-terminal*
+
+
+Some debug adapters support launching the debugee in an integrated or external
+terminal.
+
+For that they usually provide a `console` option in their |dap-configuration|.
+The supported values are sometimes called `internalConsole`,
+`integratedTerminal` and `externalTerminal`, but you need to consult the debug
+adapter documentation to figure out the concrete property name and values.
+
+
+If you want to use the `externalTerminal` you need to setup the terminal which
+should be launched by nvim-dap:
+
+>lua
+  local dap = require('dap')
+  dap.defaults.fallback.external_terminal = {
+    command = '/usr/bin/alacritty';
+    args = {'-e'};
+  }
+<
+
+Some debug adapters support launching the debugee in a terminal, but don't
+provide an option to choose between integrated terminal or external terminal.
+`nvim-dap` provides an option to force the external terminal.
+
+>lua
+  local dap = require('dap')
+  dap.defaults.fallback.force_external_terminal = true
+<
+
+If you're using the integrated terminal, you can configure the command
+that is used to create a split window:
+
+>lua
+  local dap = require('dap')
+  dap.defaults.fallback.terminal_win_cmd = '50vsplit new'
+<
+
+The `terminal_win_cmd` defaults to `belowright new`. The value can also be a
+function which returns a buffer number and optionally a window ID.
+
+Be default `dap` opens the integrated terminal but keeps focus on the current
+buffer. If you rather have focus to be shifted to the terminal when it opens
+you can configure:
+
+>lua
+  local dap = require('dap')
+  dap.defaults.fallback.focus_terminal = true
+<
+
+`fallback` can be replaced with the |dap-adapter| type to have type
+specific terminal configurations.
+
+==============================================================================
+API                                                  *dap-api*
+
+
+Lua module: dap
+
+
+continue({opts})                                                *dap.continue()*
+        `continue()` resumes the execution of an application [count] times if a
+        debug session is active and a thread was stopped. Threads are usually
+        stopped when a breakpoint is hit or an exception occurred.
+
+        If no debug session is active, `continue()` will start a new debug session by:
+
+        - Looking up the configurations (|dap-configuration|) for the current filetype.
+        - If there is more than one configuration it will prompt the user to
+          select one of them.
+        - It calls |dap.run()| on the selected configuration.
+
+        `continue()` is the main entry-point for users to start debugging an
+        application.
+
+        Parameters:
+            {opts}    Optional table with:
+                      - `new: boolean` force starting an additional debug session
+
+
+run({config}, {opts})                                                *dap.run()*
+        Looks up a debug adapter entry for the given configuration and runs it.
+        This is implicitly called by |dap.continue()| if no debug session is
+        active.
+
+        Most users will want to start debugging using |dap.continue()| instead
+        of using `run()`.  `run()` is intended for nvim-dap extensions which
+        create configurations dynamically, for example to debug individual test
+        cases.
+
+        If a debug session with the same name is already active, it will
+        restart the session.
+
+        Parameters:
+            {config}  |dap-configuration| to run
+            {opts}    Optional table with:
+                      - `new: boolean` force starting an additional debug session
+
+
+run_last()                                                      *dap.run_last()*
+        Re-runs the last debug adapter / configuration that ran using
+        |dap.run()|.
+
+
+restart({config})                                                *dap.restart()*
+        Restart the current session.
+        Does nothing if there is no active session.
+
+        Parameters:
+          {config}  |dap-configuration| to use. Defaults to the same
+          configuration used to start the current session.
+
+
+terminate(terminate_opts, disconnect_opts, cb),                                           *dap.terminate()*
+        Terminates the debug session.
+
+        If the debug adapter doesn't support the `terminateRequest`
+        capability, this will instead call |dap.disconnect()| with
+        `terminateDebugee = true`.
+
+        Parameters: ~
+            {terminate_opts}      Options for the `terminate` request.
+                                  Defaults to empty.
+                                  Not used if |dap.disconnect| is used.
+
+            {disconnect_opts}     Opts for |dap.disconnect|
+                                  Defaults to `{ terminateDebuggee = true }`
+
+            {cb}                  Callback that is invoked once the session
+                                  terminated or immediately if no session is
+                                  active.
+
+
+set_breakpoint({condition}, {hit_condition}, {log_message})
+                                                          *dap.set_breakpoint()*
+
+        Same as |toggle_breakpoint|, but is guaranteed to overwrite previous 
+        breakpoint.
+
+toggle_breakpoint({condition}, {hit_condition}, {log_message})
+                                                       *dap.toggle_breakpoint()*
+
+        Creates or removes a breakpoint at the current line.
+
+        Parameters: ~
+            {condition}     Optional condition that must be met for the debugger
+                            to stop at the breakpoint.
+            {hit_condition} Optional hit condition, e.g. a number as a string
+                            that tells how often this breakpoint should be visited
+                            to stop.
+            {log_message}   Optional log message. This transforms the breakpoint 
+                            into a log point. Variable interpolation with {foo} is
+                            supported within the message.
+
+list_breakpoints()                                     *dap.list_breakpoints()*
+
+        Lists all breakpoints and log points in quickfix window.
+
+clear_breakpoints()                                   *dap.clear_breakpoints()*
+
+    Removes all breakpoints
+
+set_exception_breakpoints({filters}, {exceptionOptions})
+                                              *dap.set_exception_breakpoints()*
+
+    Sets breakpoints on exceptions filtered by `filters`. If `filters` is not
+    provided it will prompt the user to choose from the available filters of the
+    debug adapter.
+
+    Parameters: ~
+        {filters}          A list of exception types to stop on (optional).
+                           Most debug adapters offer categories like `"uncaught"` and
+                           `"raised"` to filter the exceptions.
+                           If set to "default" instead of a table, the
+                           default options as recommended by the debug adapter are
+                           used.
+        {exceptionOptions} ExceptionOptions[]?
+                           (https://microsoft.github.io/debug-adapter-protocol/specification#Types_ExceptionOptions)
+
+    >lua
+        -- Ask user to stop on which kinds of exceptions
+        require'dap'.set_exception_breakpoints()
+        -- don't stop on exceptions
+        require'dap'.set_exception_breakpoints({})
+        -- stop only on certain exceptions (debugpy offers "raised", "uncaught")
+        require'dap'.set_exception_breakpoints({"uncaughted"})
+        require'dap'.set_exception_breakpoints({"raised", "uncaught"})
+        -- use default settings of debug adapter
+        require'dap'.set_exception_breakpoints("default")
+<
+
+    You can also set the default value via a `defaults.fallback` table:
+
+>lua
+        require('dap').defaults.fallback.exception_breakpoints = {'raised'}
+<
+
+    Or per config/adapter type:
+
+>lua
+        require('dap').defaults.python.exception_breakpoints = {'raised'}
+<
+
+    In this example `python` is the type. This is the same type used in
+    |dap-configuration| or the |dap-adapter| definition.
+
+
+step_over([{opts}])                                            *dap.step_over()*
+        Requests the debugee to run again for [count] steps.
+
+        For {opts} see |step_into|.
+
+
+step_into([{opts}])                                            *dap.step_into()*
+        Requests the debugee to step into a function or method if possible.
+        If it cannot step into a function or method it behaves like
+        |dap.step_over()|.
+
+        If the debug adapter has the `supportsStepInTargetsRequest` capability and
+        {askForTargets} is true, the user can choose into which function they
+        want to step into if there are multiple choices.
+
+        Some debug adapters allow a more fine-grained control over the
+        behavior of this command using the `steppingGranularity` {opts} parameter:
+
+        steppingGranularity:
+          Can be 'statement' | 'line' | 'instruction'
+          Will fall back to dap.defaults.fallback.stepping_granularity
+          Default: 'statement'
+
+        askForTargets:
+          Ask the user to step into which function if there are multiple choices.
+          Only for step_into.
+
+
+step_out([{opts}])                                              *dap.step_out()*
+        Requests the debugee to step out of a function or method if possible.
+
+        For options see |step_into|.
+
+step_back([{opts}]                                             *dap.step_back()*
+        Steps one step back. Debug adapter must support reverse debugging.
+
+        For {opts} see |step_into|.
+
+pause({thread_id})                                                 *dap.pause()*
+        Requests debug adapter to pause a thread. If there are multiple threads
+        it stops `thread_id` from the optional parameter or asks the user which
+        thread to pause.
+
+reverse_continue()                                      *dap.reverse_continue()*
+        Continues execution reverse in time until last breakpoint.
+        Debug adapter must support reverse debugging.
+
+up()                                                                  *dap.up()*
+        Go up in current stacktrace without stepping.
+
+down()                                                              *dap.down()*
+        Go down in current stacktrace without stepping.
+
+
+goto_({line})                                                      *dap.goto_()*
+        Let the debugger jump to a specific line or line under cursor.
+        This is an optional feature and not all debug adapters support it.
+
+        The code between the current location and the goto target is not
+        executed but skipped.
+
+        Parameters: ~
+            {line}  Line number or line under cursor if nil.
+
+focus_frame()                                                 *dap.focus_frame()*
+        Jump/focus the current frame.
+
+        Which window to use depends on the `switchbuf` setting. See
+        |dap.defaults|.
+
+        A current frame is set when breakpoints are hit or when traversing
+        the stack using |dap.up()|, |dap.down()| or the threads and frames
+        widgets. See |dap-widgets|.
+
+        This is a no-op if there is no active session.
+        If there is a session active but no current frame it opens the threads
+        widget to allow pausing threads and picking a frame to focus.
+
+
+restart_frame()                                            *dap.restart_frame()*
+        Restart execution of the current frame
+
+        This is an optional feature and not all debug adapters support it.
+
+
+run_to_cursor()                                            *dap.run_to_cursor()*
+        Continues execution to the current cursor.
+
+        This temporarily removes all breakpoints, sets a breakpoint at the
+        cursor, resumes execution and then adds back all breakpoints again.
+
+
+repl.open({winopts}, {wincmd})                                 *dap.repl.open()*
+        Open a REPL / Debug-console.
+
+        Parameters: ~
+            {winopts}  optional table which may include:
+                        `height` to set the window height
+                        `width` to set the window width
+                        Any other key/value pair, that will be treated as window
+                        option.
+
+            {wincmd} command that is used to create the window for
+                     the REPL. Defaults to 'belowright split'
+
+
+        The REPL can be used to evaluate expressions. A `omnifunc` is set to
+        support completion of expressions. It supports the following special
+        commands:
+
+          .exit               Closes the REPL
+          .c or .continue     Same as |dap.continue|
+          .n or .next         Same as |dap.step_over|
+          .into               Same as |dap.step_into|
+          .into_target        Same as |dap.step_into{askForTargets=true}|
+          .out                Same as |dap.step_out|
+          .up                 Same as |dap.up|
+          .down               Same as |dap.down|
+          .goto               Same as |dap.goto_|
+          .scopes             Prints the variables in the current scopes
+          .threads            Prints all threads
+          .frames             Print the stack frames
+          .capabilities       Print the capabilities of the debug adapter
+          .b or .back         Same as |dap.step_back|
+          .rc or
+          .reverse-continue   Same as |dap.reverse_continue|
+
+        You can customize the builtin command names or define your own
+        custom commands by extending `dap.repl.commands`:
+
+        >lua
+          local repl = require 'dap.repl'
+          repl.commands = vim.tbl_extend('force', repl.commands, {
+            -- Add a new alias for the existing .exit command
+            exit = {'exit', '.exit', '.bye'},
+            -- Add your own commands; run `.echo hello world` to invoke
+            -- this function with the text "hello world"
+            custom_commands = {
+              ['.echo'] = function(text)
+                dap.repl.append(text)
+              end,
+              -- Hook up a new command to an existing dap function
+              ['.restart'] = dap.restart,
+            },
+          }
+
+        <
+
+
+repl.toggle({winopts}, {wincmd})                             *dap.repl.toggle()*
+        Opens the REPL if it is closed, otherwise closes it.
+
+        See |dap.repl.open| for a description of the argument.
+
+
+repl.close()                                                  *dap.repl.close()*
+        Closes the REPL if it is open.
+
+
+repl.execute({text})                                        *dap.repl.execute()*
+        Add and execute text as if entered directly
+
+
+set_log_level(level)                                       *dap.set_log_level()*
+        Sets the log level. Defaults to `INFO`  >
+
+            :lua require('dap').set_log_level('TRACE')
+<
+
+        Available log levels:
+
+          TRACE
+          DEBUG
+          INFO
+          WARN
+          ERROR
+
+        The log file is in the |stdpath| `cache` folder.
+        To print the location:  >
+
+            :lua print(vim.fn.stdpath('cache'))
+<
+        The filename is `dap.log`
+
+
+session()                                                        *dap.session()*
+        Returns the currently focused session or nil if no session exists or
+        has focus.
+
+        See |dap-session| for a description of a session object.
+
+sessions()                                                      *dap.sessions()*
+        Returns a table with the active top-level debug sessions.
+        The keys are session ids and the values are the `Session` instances.
+
+status()                                                          *dap.status()*
+        Returns the status of the current debug session as text
+        This is intended to be used within the statusline
+
+        If no debug session is active the result is empty.
+
+
+disconnect(opts, cb)                                          *dap.disconnect()*
+
+        disconnect asks the debug adapter to disconnect from the debuggee and
+        to terminate the debug adapter.
+
+        The client session may remain open if the debug adapter does not
+        terminate. To ensure the session gets closed, also call |dap.close()|.
+
+        Requires an active session.
+
+        Parameters: ~
+            {opts}    Table with options for the disconnect request.
+                      Defaults to `{ restart = false, terminateDebuggee = null }`
+
+            {cb}      Callback that is invoked once the session
+                      disconnected or immediately if no session is active.
+
+
+close()                                                            *dap.close()*
+        Closes the current session.
+
+        This does NOT terminate the debug adapter or debugee.
+        You usually want to use either |dap.terminate()| or |dap.disconnect()|
+        instead.
+
+
+launch({adapter}, {config})                                       *dap.launch()*
+        Launch a new debug adapter and then initialize it with the given
+        |dap-configuration|
+
+        You typically do not want to call this directly but use
+        |dap.continue()| or |dap.run()|
+
+        Parameters: ~
+            {adapter}   `Adapter` to launch, see |dap-adapter|, the `type` is
+                        not required in this case.
+            {config}    |dap-configuration|
+
+
+attach({adapter}, {config})                                       *dap.attach()*
+        Attach to a running debug adapter and then initialize it with the
+        given |dap-configuration|
+
+        You typically do not want to call this directly but use
+        |dap.continue()| or |dap.run()|
+
+
+
+==============================================================================
+WIDGET API                                                    *dap-widgets*
+
+
+Warning: API is experimental and subject to change.
+
+
+The UI of nvim-dap is by default minimal and noninvasive, but it provides
+widget primitives that can be used to build and customize a UI.
+
+Some examples:
+
+
+View the current scopes in a sidebar:
+
+>lua
+  local widgets = require('dap.ui.widgets')
+  local my_sidebar = widgets.sidebar(widgets.scopes)
+  my_sidebar.open()
+<
+
+View the current frames in a sidebar:
+
+>lua
+  local widgets = require('dap.ui.widgets')
+  local my_sidebar = widgets.sidebar(widgets.frames)
+  my_sidebar.open()
+<
+
+
+View the current scopes in a centered floating window:
+
+>lua
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.scopes)
+<
+
+
+View the value for the expression under the cursor in a floating window:
+
+>lua
+  require('dap.ui.widgets').hover()
+<
+
+
+The widgets may have the following custom mappings enabled:
+
+- `<CR>` to expand or collapse an entry
+- `a` to show a menu with available actions
+
+
+Available widgets entities:
+
+- sessions
+- scopes
+- frames
+- expression
+- threads
+
+
+Available widget builder functions:
+
+- sidebar({widget}, {winopts}, {wincmd})
+    Creates a view for a sidebar. You must call `open` on the result to open the window.
+
+    See |dap.repl.open()| for a description of `winopts` and `wincmd`.
+
+- cursor_float({widget}, {winopts})
+    Opens the contents of the widget in a floating window anchored at the cursor.
+
+- centered_float({widget}, {winopts})
+    Opens the contents of the widget in a centered floating window.
+
+- hover({expr}, {winopts})
+    Evaluates the expression and displays the result in a floating window.
+
+    {expr} defaults to `<cexpr>`.
+    It can be either a string as described in |expand()| or a function that
+    should return the variable or expression that should be evaluated.
+
+- preview({expr}, {opts})
+    Like hover but uses the preview window
+
+    {opts} optional table with:
+
+      - listener?: string[]
+          Names of commands or events which trigger an update of the view.
+          Defaults to none; freezing the value.
+
+          See |dap-extensions| for information about available commands and
+          events and the listener system.
+
+All widget builder functions return a `view`. A view has the following methods:
+
+- open()
+- close()
+- toggle()
+
+
+You could also customize the buffer and window creation using a low-level builder:
+
+>lua
+  local widgets = require('dap.ui.widgets')
+  widgets.builder(widgets.scopes)
+    .new_buf(function_that_creates_and_returns_a_buffer)
+    .new_win(function_that_creates_and_returns_a_window)
+    .build()
+<
+
+
+==============================================================================
+EXTENSIONS API                                                *dap-extensions*
+
+
+nvim-dap supports subscribing and listening to all responses or events that a
+debug adapter might send to nvim-dap.
+
+There are two tables for that:
+
+- `dap.listeners.before`
+- `dap.listeners.after`
+
+Both `before` and `after` are nested tables where the first key is
+`event_<event>` for events or `<command>` for request responses. The second key
+is an arbitrary key used to identify the subscription. The second key must be
+unique. If you're developing a plugin, using the plugin name might be a good
+option to avoid conflicts with others.
+
+`<event>` is the name of the event.
+`<command>` is the name of the command that got executed and resulted in the
+response.
+
+Please refer to the Debug Adapter Protocol specification to get a list of all
+events or requests and their response formats:
+
+- https://microsoft.github.io/debug-adapter-protocol/specification#Requests
+- https://microsoft.github.io/debug-adapter-protocol/specification#Events
+
+For example:
+
+>lua
+  local dap = require('dap')
+  dap.listeners.before['event_terminated']['my-plugin'] = function(session, body)
+    print('Session terminated', vim.inspect(session), vim.inspect(body))
+  end
+<
+
+Listeners registered in the `before` table are called *before* the internal `nvim-dap` handlers are called. The listeners registered in the `after` table are called *after* internal `nvim-dap` handlers.
+
+
+For commands (request responses), the listeners are called with five arguments:
+
+1. The session
+2. An error: A optional table with `message` and `body` properties.
+3. A table with the response. `nil` if an error occurred.
+4. The original payload of the request
+5. The sequence number for the request (also known as message ID)
+
+For events, the listeners are called with two arguments:
+
+1. The session
+2. The event payload
+
+==============================================================================
+UTILS API                                                          *dap-utils*
+
+
+Lua module: dap.utils
+
+pick_process({opts})                                    *dap.utils.pick_process*
+    Show a prompt to select a process pid
+    Requires `ps ah -U $USER` on Linux/Mac and `tasklist /nh /fo csv` on windows.
+
+
+    Parameters:
+      {opts}  optional table with the following properties:
+
+                - filter string|fun:
+                    A lua pattern or function to filter the processes.
+                    If a function the parameter is a table with
+                    {pid: integer, name: string}
+                    and it must return a boolean.
+                    Matches are included.
+
+    >lua
+    require("dap.utils").pick_process({ filter = "sway" })
+<
+    >lua
+    require("dap.utils").pick_process({
+      filter = function(proc) return vim.endswith(proc.name, "sway") end
+    })
+<
+==============================================================================
+DAP Session                                                        *dap-session*
+
+nvim-dap creates a session object per debug session. You can either get the current
+session via |dap.session()|, or get access to one via a listener (|dap-extensions|).
+
+The session object is a low level primitive, used to interact with the debug
+session. This is not indented for regular debug-client users, but rather for
+extension authors, or power users.
+
+The session contains methods - functions where the first parameter is the
+session itself. To call them, you can use the method call syntax:
+`obj:function_name()`, instead of `obj.function_name(obj)`.
+See |lua-function|.
+
+
+request({command}, {arguments}, {callback})             *dap-session:request()*
+
+    Send a request to the debug adapter.
+    See the requests section in https://microsoft.github.io/debug-adapter-protocol/specification
+    for a list of supported payloads.
+
+    Parameters:
+      {command} string      The command to execute
+      {arguments} any|nil   Arguments
+      {callback} function   Callback called with two parameters: err and result.
+
+    For example, to make a `evaluate` request, you'd use:
+
+>lua
+      local session = assert(require("dap").session(), "has active session")
+      local arguments = {
+        expression = "1 + 2"
+      }
+      session:request("evaluate", arguments, function(err, result)
+        vim.print(err or "No error")
+        vim.print(result or "No result")
+      end)
+<
+
+    The method is coroutine aware. If it is running inside a coroutine you can
+    omit the callback and it will default to resume the coroutine with the
+    result.
+
+    An example:
+
+>lua
+      local session = assert(require("dap").session(), "has active session")
+      local arguments = {
+        expression = "1 + 2"
+      }
+      coroutine.wrap(function()
+        local err, result = session:request("evaluate", arguments)
+        vim.print(err or "No error")
+        vim.print(result or "No result")
+      end)()
+<
+
+    This is convenient if you want to make multiple requests as it helps
+    prevent callback nesting.
+
+    Note that `coroutine.wrap` doesn't propagate errors but you could setup
+    error handling via |xpcall()|
+
+
+vim:ft=help
