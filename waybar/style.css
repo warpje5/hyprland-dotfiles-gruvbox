@@ -45,7 +45,7 @@ tooltip {
 }
 
 #workspaces button.empty {
-    color: #665c54; 
+    color: #504945; 
     background: #282828;
     border: none;
 }
@@ -56,6 +56,12 @@ tooltip {
     box-shadow: inherit;
     text-shadow: inherit;
     color: #d79921;
+    border-radius: 10px;
+}
+
+#workspaces button.special {
+    color: #fabd2f;
+    background: #282828;
     border-radius: 10px;
 }
 
