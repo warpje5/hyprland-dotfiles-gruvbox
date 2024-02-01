@@ -133,6 +133,7 @@ tooltip {
     border-color: #ebdbb2;
     border-left: 0px;
     border-right: 0px;
+    min-width: 27px;
 }
 
 #custom-updates {
