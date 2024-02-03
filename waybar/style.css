@@ -24,7 +24,10 @@ tooltip {
     color: #665c54;
     border: none;
     background: #282828;
-  	margin-right: 5px;
+    margin-right: 5px;
+    box-shadow: inherit;
+    text-shadow: inherit;
+
 }
 
 #workspaces button.active {
@@ -53,8 +56,6 @@ tooltip {
 #workspaces button:hover {
     background: none;
     border-color: transparent;
-    box-shadow: inherit;
-    text-shadow: inherit;
     color: #d79921;
     border-radius: 10px;
 }
