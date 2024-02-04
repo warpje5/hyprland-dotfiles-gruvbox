@@ -23,16 +23,18 @@ tooltip {
 #workspaces button {
     color: #665c54;
     border: none;
+    border-radius: 10px;
     background: #282828;
-    margin-right: 5px;
+  	margin-right: 5px;
     box-shadow: inherit;
     text-shadow: inherit;
-
 }
 
 #workspaces button.active {
     color: #ebdbb2;
-	background: #282828;
+    border: none;
+    border-radius: 10px;
+	  background: #282828;
 }
 
 #workspaces button.focused {
@@ -45,12 +47,14 @@ tooltip {
     color: #458588; 
     background: #282828;
     border: none;
+    border-radius: 10px;
 }
 
 #workspaces button.empty {
     color: #504945; 
-    background: #282828;
+    background: transparent;
     border: none;
+    border-radius: 10px;
 }
 
 #workspaces button:hover {
@@ -71,6 +75,7 @@ tooltip {
     color: #ebdbb2; 
     background: #282828;
     border: none;
+    border-radius: 10px;
 }
 
 #workspaces button.urgent {
@@ -115,8 +120,8 @@ tooltip {
     border-style: solid;
     border-color: #ebdbb2;
     margin-left: 10px;
-    padding-right: 0px;
-    padding-left: 5px;
+    padding-right: 4px;
+    padding-left: 0px;
 }
 
 #custom-caffeine {

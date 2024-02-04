@@ -27,20 +27,20 @@
         "format": "{}"
     },
     "hyprland/workspaces": {
-        "disable-scroll": false,
+        "disable-scroll": true,
         "all-outputs": true,
         "show-special": true,
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
-              "1": "",
-		          "2": "",
-		          "3": "",
-		          "4": "",
-		          "5": "󰭻",
-              "urgent": "",
-		          "default": "",
-              "magic": "󰐃",
+              "1": " ",
+		          "2": " ",
+		          "3": " ",
+		          "4": " ",
+		          "5": "",
+              "urgent": " ",
+		          "default": " ",
+              "magic": " 󰐃",
         },
         "persistent_workspaces": {
             "1": [],
@@ -120,6 +120,7 @@
     "pulseaudio#microphone": {
         "format": "{format_source}",
         "format-source": " {volume}%",
+        "tooltip": false,
         "format-source-muted": " Muted",
         "on-click": "pamixer --default-source -t",
         "on-scroll-up": "pamixer --default-source -i 5",
