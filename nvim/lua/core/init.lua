@@ -12,6 +12,7 @@ g.transparency = config.ui.transparency
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
 
+opt.autochdir = true
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 
