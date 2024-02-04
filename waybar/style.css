@@ -3,19 +3,21 @@
     border-radius: 0;
     font-family: Hack Nerd Font;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 13px;
     min-height: 0;
 }
 
 window#waybar {
     background: rgba(40, 40, 40, 0);
     color: #ebdbb2;
+    margin: 0px;
+    padding: 0px;
 }
 
 tooltip {
     background: #282828;
     border-radius: 10px;
-    border-width: 4px;
+    border-width: 3px;
     border-style: solid;
     border-color: #ebdbb2;
 }
@@ -107,19 +109,19 @@ tooltip {
 #tray {
     background: #282828;
     border-radius: 10px;
-    border-width: 4px;
+    border-width: 3px;
     border-style: solid;
     border-color: #ebdbb2; 
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
 #workspaces {
     background: #282828;
     border-radius: 10px;
-    border-width: 4px;
+    border-width: 3px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-left: 10px;
+    margin-left: 8px;
     padding-right: 4px;
     padding-left: 0px;
 }
@@ -134,18 +136,18 @@ tooltip {
 #language {
     background: #282828;
     color: #ebdbb2;
-    border-width: 4px;
+    border-width: 3px;
     border-style: solid;
     border-color: #ebdbb2;
     border-left: 0px;
     border-right: 0px;
-    min-width: 27px;
+    min-width: 24px;
 }
 
 #custom-updates {
     background: #282828;
     color: #ebdbb2;
-    border-width: 4px;
+    border-width: 3px;
     border-style: solid;
     border-color: #ebdbb2;
     border-radius: 10px 0px 0px 10px;
@@ -154,7 +156,7 @@ tooltip {
 
 #window {
     background: #282828;
-    border-width: 4px;
+    border-width: 3px;
     border-style: solid;
     border-color: #ebdbb2;
     border-radius: 10px;
@@ -165,11 +167,11 @@ tooltip {
 #clock {
     background: #282828;
     color: #ebdbb2;
-    border-width: 4px;
+    border-width: 3px;
     border-style: solid;
     border-color: #ebdbb2; 
     border-radius: 10px 0px 0px 10px;
-    margin-left: 10px;
+    margin-left: 6px;
     border-right: 0px;
 }
 
@@ -182,7 +184,7 @@ tooltip {
 #pulseaudio {
     background: #282828;
     color: #ebdbb2;
-    border-width: 4px;
+    border-width: 3px;
     border-style: solid;
     border-color: #ebdbb2;
     border-left: 0px;
@@ -192,12 +194,12 @@ tooltip {
 #pulseaudio.microphone {
     background: #282828;
     color: #ebdbb2;
-    border-width: 4px;
+    border-width: 3px;
     border-style: solid;
     border-color: #ebdbb2;
     border-radius: 0px 10px 10px 0px;
     border-left: 0px;
-    margin-right: 10px;
+    margin-right: 6px;
 }
 
 #battery {
@@ -211,7 +213,7 @@ tooltip {
     background: #282828;
     color: #ebdbb2;
     border-radius: 0px 10px 10px 0px;
-    border-width: 4px;
+    border-width: 3px;
     border-left: 0px;
     border-style: solid;
     border-color: #ebdbb2;
