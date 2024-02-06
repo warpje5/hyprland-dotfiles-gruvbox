@@ -98,6 +98,11 @@ local plugins = {
   },
 
   {
+    "sitiom/nvim-numbertoggle",
+    event = "VeryLazy",
+  },
+  
+  {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
