@@ -7,7 +7,7 @@ Icons - gruvbox-plus-dark
 
 Theme - gruvbox-dark-bl-lb
 
-Fonts used - Hack Nerd Font and Commissioner
+Fonts used - Hack Nerd Font, Commissioner, awesome font
 
 Necessary apps for me - playerctl, grimshot, nm-applet, 
 blueman-applet, calcurse, nwg-look, swaylock-effects!!!, wlogout!!!, redshift!!! 
