@@ -5,7 +5,7 @@ Cursors - capitaine cursors gruvbox (gnome-look.org)
 
 Icons - gruvbox-plus-dark
 
-Theme - gruvbox-dark-bl
+Theme - gruvbox-dark-bl-lb
 
 Fonts used - Hack Nerd Font and Commissioner
 
