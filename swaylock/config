@@ -4,47 +4,50 @@ font=Hack Nerd Font
 clock
 timestr=%R
 
-image=~/.config/swaylock/evening.jpg
+image=~/.config/swaylock/solar-system.jpg
 
-fade-in=0.2
+fade-in=0.4
 
-#effect-blur=15x2
+indicator-idle-visible
+hide-keyboard-layout
+
+effect-blur=6x2
 #effect-greyscale
-#effect-scale=0.1
+effect-scale=1
 
 indicator
-indicator-radius=110
-indicator-thickness=10
+indicator-radius=150
+indicator-thickness=20
 indicator-caps-lock
 
-key-hl-color=880033ff
+key-hl-color=458588d9
 
 separator-color=00000000
 
-inside-color=01010133
-inside-clear-color=ffd20433
-inside-caps-lock-color=009ddc33
-inside-ver-color=d9d8d833
-inside-wrong-color=ee2e2433
+inside-color=282828d9
+inside-clear-color=282828d9
+inside-caps-lock-color=af3a03d9
+inside-ver-color=282828d9
+inside-wrong-color=9d0006d9
 
-ring-color=231f20D9
-ring-clear-color=231f20D9
-ring-caps-lock-color=231f20D9
-ring-ver-color=231f20D9
-ring-wrong-color=231f20D9
+ring-color=ebdbb2D9
+ring-clear-color=ebdbb2d9
+ring-caps-lock-color=af3a03d9
+ring-ver-color=ebdbb2d9
+ring-wrong-color=9d0006d9
 
-line-color=00000000
-line-clear-color=ffd204FF
-line-caps-lock-color=009ddcFF
-line-ver-color=d9d8d8FF
-line-wrong-color=ee2e24FF
+line-color=ebdbb2d9
+line-clear-color=ebdbb2d9
+line-caps-lock-color=af3a03d9
+line-ver-color=ebdbb2d9
+line-wrong-color=9d0006d9
 
 text-color=ebdbb2ff
-text-clear-color=98971aff
-text-ver-color=d79921ff
-text-wrong-color=cc241dff
+text-clear-color=ebdbb2ff
+text-ver-color=ebdbb2ff
+text-wrong-color=ebdbb2d9
 
-bs-hl-color=ffd204ff
-caps-lock-key-hl-color=ffd204FF
-caps-lock-bs-hl-color=dededeFF
-text-caps-lock-color=009ddcff
+bs-hl-color=b57614d9
+caps-lock-key-hl-color=9d0006d9
+caps-lock-bs-hl-color=ebdbb2d9
+text-caps-lock-color=ebdbb2d9
