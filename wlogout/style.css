@@ -1,18 +1,19 @@
 window {
     font-family: hack nerd font;
-    font-size: 14pt;
+    font-size: 20pt;
     color: #ebdbb2; /* text */
     background-color: rgba(40, 40, 40, 0.85);
 }
 
 button {
-	background-repeat: no-repeat;
+  background-repeat: no-repeat;
     background-position: center;
-    background-size: 25%;
+    background-size: 50%;
     border-style: solid;
-	border-width: 4px;
+    border-radius: 10px;
+	  border-width: 3px;
     border-color: #ebdbb2;
-	background-color: rgba(40, 40, 40, 1);
+	  background-color: rgba(40, 40, 40, 1);
     margin: 10px;
     transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
@@ -59,4 +60,11 @@ button:focus {
 }
 #reboot:focus {
     background-image: image(url("./restart-hover.png"));
+}
+
+#windows {
+  background-image: image(url("./windows.png"));
+}
+#windows:focus {
+  background-image: image(url("./windows-hover.png"));
 }
