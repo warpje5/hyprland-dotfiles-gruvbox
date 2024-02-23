@@ -6,6 +6,7 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "height": 0,
+    "reload_style_on_change": true,
     "modules-left": [
         "clock",
         "custom/weather",
@@ -52,7 +53,7 @@
     },
     "custom/updates": {
         "format": "󰚰 {}",
-        "interval": 900,                     // every 15 min
+        "interval": 300,                     // every 5 min
         "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",       // # of updates and tooltip details
         "exec-if": "exit 0",                  // always run; consider advanced run conditions
         "on-click": "kitty -e sudo pacman -Syu", // update system
@@ -63,6 +64,14 @@
         "format-ru": "Rus",
         "format-us": "Eng",
         "format-en": "Eng",
+    },
+    "keyboard-state": {
+	      "capslock": true,
+	      "format": "{icon}",
+	      "format-icons": {
+            "unlocked": "",           
+		        "locked": "C"
+          	},
     },
     "custom/weather" : {
         "tooltip" : true,
@@ -76,8 +85,12 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{: %R   %d/%m}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+        "format": "{: %R   %d/%m %a}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3
+            }
     },
     "backlight": {
         "device": "intel_backlight",

@@ -144,6 +144,20 @@ tooltip {
     min-width: 24px;
 }
 
+#keyboard-state {
+    font-family: Hack Nerd Font;
+    font-weight: bold;
+    font-size: 13px;
+    background: #282828;
+    color: #ebdbb2;
+    border-radius: 0px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #ebdbb2;
+    border-left: 0px;
+    border-right: 0px;
+}
+
 #custom-updates {
     background: #282828;
     color: #ebdbb2;
@@ -217,7 +231,15 @@ tooltip {
     border-left: 0px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-left: 0px;
 }
 
+
+#custom-media {
+    background: #282828;
+    border-radius: 10px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #ebdbb2; 
+    margin-right: 8px;
+}
 
