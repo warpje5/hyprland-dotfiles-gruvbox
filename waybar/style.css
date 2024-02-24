@@ -27,9 +27,9 @@ tooltip {
     border: none;
     border-radius: 10px;
     background: #282828;
-  	margin-right: 5px;
     box-shadow: inherit;
     text-shadow: inherit;
+    margin-left: 5px;
 }
 
 #workspaces button.active {
@@ -46,7 +46,7 @@ tooltip {
 }
 
 #workspaces button.persistent {
-    color: #458588; 
+    color: #928374; 
     background: #282828;
     border: none;
     border-radius: 10px;
