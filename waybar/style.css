@@ -29,7 +29,8 @@ tooltip {
     background: #282828;
     box-shadow: inherit;
     text-shadow: inherit;
-    margin-left: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #workspaces button.active {
