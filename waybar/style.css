@@ -26,6 +26,7 @@ tooltip {
     color: #665c54;
     border: none;
     border-radius: 10px;
+    transition-duration: .3s;
     background: #282828;
     box-shadow: inherit;
     text-shadow: inherit;
