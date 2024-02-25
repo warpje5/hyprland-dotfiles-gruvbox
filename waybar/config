@@ -6,7 +6,6 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "height": 0,
-    "reload_style_on_change": true,
     "modules-left": [
         "clock",
         "custom/weather",
@@ -17,9 +16,9 @@
         "custom/media",
         "tray",
         "custom/updates",
+        "idle_inhibitor",
         "hyprland/language",
-        "battery",
-        "backlight",
+        "keyboard-state",
         "pulseaudio",
         "pulseaudio#microphone"
     ],
@@ -41,7 +40,6 @@
 		          "3": "",
 		          "4": "",
 		          "5": "󰍨",
-              "6": "",
               "urgent": "",
 		          "default": "",
               "magic": "󰐃",
@@ -52,7 +50,6 @@
             "3": [],
             "4": [],
             "5": [],
-            "6": [],
         },
         "sort-by-number": true,
     },
@@ -71,12 +68,20 @@
         "format-en": "Eng",
     },
     "keyboard-state": {
+        "numlock": false,
 	      "capslock": true,
 	      "format": "{icon}",
 	      "format-icons": {
-            "unlocked": "",           
-		        "locked": "C"
-          	},
+		    "locked": "󰘲",
+		    "unlocked": ""
+	      }
+    },   
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+             }
     },
     "custom/weather" : {
         "tooltip" : true,

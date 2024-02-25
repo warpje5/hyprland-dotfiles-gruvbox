@@ -145,9 +145,6 @@ tooltip {
 }
 
 #keyboard-state {
-    font-family: Hack Nerd Font;
-    font-weight: bold;
-    font-size: 13px;
     background: #282828;
     color: #ebdbb2;
     border-radius: 0px;
@@ -156,6 +153,9 @@ tooltip {
     border-color: #ebdbb2;
     border-left: 0px;
     border-right: 0px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    padding-right: 3px;
 }
 
 #custom-updates {
@@ -217,7 +217,7 @@ tooltip {
 }
 
 #battery {
-    color: #a6e3a1;
+    color: #ebdbb2;
     border-radius: 0 10px 10px 0;
     margin-right: 10px;
     border-left: 0px;
@@ -242,4 +242,21 @@ tooltip {
     border-color: #ebdbb2; 
     margin-right: 8px;
 }
+
+#idle_inhibitor { 
+    background: #282828;
+    color: #ebdbb2;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #ebdbb2;
+    border-left: 0px;
+    border-right: 0px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    padding-right: 10px;
+    padding-left: 4px;
+    min-width: 18px;
+}
+
+
 
