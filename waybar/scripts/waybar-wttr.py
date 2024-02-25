@@ -34,7 +34,7 @@ WEATHER_CODES = {
     "317": "🌧️",
     "320": "🌨️",
     "323": "🌨️",
-    "326": "🌨️",
+    "326": "🌨️ ",
     "329": "❄️ ",
     "332": "❄️ ",
     "335": "❄️ ",
@@ -45,7 +45,7 @@ WEATHER_CODES = {
     "359": "🌧️",
     "362": "🌧️",
     "365": "🌧️",
-    "368": "🌧️",
+    "368": "🌧️ ",
     "371": "❄️",
     "374": "🌨️",
     "377": "🌨️",
@@ -95,9 +95,7 @@ if tempint > 0 and tempint < 10:
 
 
 data["text"] = (
-    " "
-    + WEATHER_CODES[weather["current_condition"][0]["weatherCode"]]
-    + " "
+    WEATHER_CODES[weather["current_condition"][0]["weatherCode"]]
     + extrachar
     + weather["current_condition"][0]["temp_C"]
     + "°"
