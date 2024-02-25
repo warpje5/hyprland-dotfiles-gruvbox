@@ -1,3 +1,5 @@
+26/02/24 - added new modules to waybar: idle_inhibitor and keyboard-state, to be able to use keyboard state u need to add urself to input group "sudo usermod -aG input $USER"
+
 04/02/24 - big update, we are moving to thinner, less rounded, and more light style. We have smaller fonts and less gaps. I think its time to move to more utilitary direction, big gaps and thick borders just take too much space, althought its looks good. I tried to save same aestetics, but make theme less heavy.
 
 
