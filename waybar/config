@@ -20,7 +20,8 @@
         "hyprland/language",
         "keyboard-state",
         "pulseaudio",
-        "pulseaudio#microphone"
+        "pulseaudio#microphone",
+        "custom/power"
     ],
 
     "hyprland/window": {
@@ -139,6 +140,11 @@
             "car": "",
             "default": ["", "", ""]
         }
+    },
+    "custom/power": {
+        "format": " ⏻ ",
+        "tooltip": false,
+        "on-click": "wlogout -b 5 --protocol layer-shell"
     },
     "pulseaudio#microphone": {
         "format": "{format_source}",
