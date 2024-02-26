@@ -271,7 +271,8 @@ tooltip {
     border-radius: 0px 10px 10px 0px;
     border-left: 0px;
     margin-left: 0px;
-    margin-right: 0px;
+    margin-right: 6px;
+    padding-right: 10px;
 }
 
 
