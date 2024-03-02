@@ -13,7 +13,6 @@
     ],
     "modules-center": ["hyprland/window"],
     "modules-right": [
-        "custom/media",
         "tray",
         "custom/updates",
         "idle_inhibitor",
@@ -155,6 +154,20 @@
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
-		}
-    },
+		},
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify-launcher": "",
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        // "exec": "$HOME/.config/waybar/mediaplayer/mediaplayer 2> /dev/null" // Script in resources folder
+        "exec": "$HOME/.config/waybar/mediaplayer/mediaplayer --player spotify-launcher 2> /dev/null" // Filter player based on name
+    }
+
 }
+

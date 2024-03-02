@@ -98,6 +98,7 @@ tooltip {
 #network,
 #workspaces,
 #tray,
+#custom-media,
 #keyboard-state,
 #idle_inhibitor,
 #custom-power,
@@ -238,7 +239,6 @@ tooltip {
     border-style: solid;
     border-color: #ebdbb2;
 }
-
 
 #custom-media {
     background: #282828;
