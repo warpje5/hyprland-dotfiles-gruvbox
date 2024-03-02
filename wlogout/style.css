@@ -13,13 +13,14 @@ button {
     border-radius: 10px;
 	  border-width: 3px;
     border-color: #ebdbb2;
-	  background-color: rgba(40, 40, 40, 1);
+	  background-color: rgba(40, 40, 40, 0.9);
     margin: 10px;
-    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: rgba(49, 50, 68, 0.1);
+    background-color: rgba(104, 157, 106, 0.9);
+    color: #282828;
 }
 
 button:focus {
@@ -33,11 +34,17 @@ button:focus {
 #lock:focus {
     background-image: image(url("./lock-hover.png"));
 }
+#lock:hover {
+    background-image: image(url("./lock-hover.png"));
+}
 
 #logout {
     background-image: image(url("./logout.png"));
 }
 #logout:focus {
+    background-image: image(url("./logout-hover.png"));
+}
+#logout:hover {
     background-image: image(url("./logout-hover.png"));
 }
 
@@ -47,11 +54,17 @@ button:focus {
 #suspend:focus {
     background-image: image(url("./sleep-hover.png"));
 }
+#suspend:hover {
+    background-image: image(url("./sleep-hover.png"));
+}
 
 #shutdown {
     background-image: image(url("./power.png"));
 }
 #shutdown:focus {
+    background-image: image(url("./power-hover.png"));
+}
+#shutdown:hover {
     background-image: image(url("./power-hover.png"));
 }
 
@@ -61,10 +74,16 @@ button:focus {
 #reboot:focus {
     background-image: image(url("./restart-hover.png"));
 }
+#reboot:hover {
+    background-image: image(url("./restart-hover.png"));
+}
 
 #windows {
   background-image: image(url("./windows.png"));
 }
 #windows:focus {
+  background-image: image(url("./windows-hover.png"));
+}
+#windows:hover {
   background-image: image(url("./windows-hover.png"));
 }
