@@ -77,6 +77,7 @@
 	      }
     },   
     "idle_inhibitor": {
+        "tooltip": false,
         "format": "{icon}",
         "format-icons": {
             "activated": "",
@@ -99,8 +100,15 @@
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "year",
-            "mode-mon-col": 3
-            }
+            "mode-mon-col": 3,
+            "format": {
+			          "months":     "<span color='#98971a'><b>{}</b></span>",
+			          "days":       "<span color='#ebdbb2'><b>{}</b></span>",
+			          "weeks":      "<span color='#7c6f64'><b>W{}</b></span>",
+			          "weekdays":   "<span color='#fabd2f'><b>{}</b></span>",
+		            "today":      "<span color='#d79921'><b><u>{}</u></b></span>"
+		            }
+        }
     },
     "backlight": {
         "device": "intel_backlight",
