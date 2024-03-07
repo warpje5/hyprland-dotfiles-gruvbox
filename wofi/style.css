@@ -2,7 +2,7 @@ window {
     margin: 0px;
     border: 3px none #ebdbb2;
     border-width: 3px;
-    background-color: rgba(40, 40, 40, 0.94);
+    background-color: #282828; 
     border-radius: 10px;
 }
 
@@ -42,7 +42,7 @@ window {
     margin: 0px;
     border: 0px solid #ebdbb2;
     border-radius: 10px;
-    background-color: rgba(40, 40, 40, 0.94);
+    background-color: #282828;
 }
 
 #scroll {
