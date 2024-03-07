@@ -4,7 +4,7 @@
 
     offset = 6x6
 
-    separator_height = 2
+    separator_height = 3
 
     padding = 8
     horizontal_padding = 8
@@ -16,7 +16,7 @@
 
     sort = yes
     idle_threshold = 120
-    font = hack nerd font 9
+    font = Commissioner 10
     line_height = 0
     markup = full
     alignment = left
@@ -25,6 +25,8 @@
     word_wrap = yes
     stack_duplicates = true
     hide_duplicate_count = false
+
+    force_wayland = true
 
     show_indicators = yes
 
@@ -43,14 +45,14 @@
     timeout = 7
 
 [urgency_low]
-    background = "#282828"
+    background = "#282828F0"
     foreground = "#EBDBB2"
 
 [urgency_normal]
-    background = "#282828"
+    background = "#282828F0"
     foreground = "#EBDBB2"
 
 [urgency_critical]
-    background = "#282828"
+    background = "#282828F0"
     foreground = "#EBDBB2"
     frame_color = "#FB4943"
