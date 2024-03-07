@@ -1,8 +1,8 @@
 window {
     margin: 0px;
-    border: 4px none #ebdbb2;
-    border-width: 4px;
-    background-color: #282828;
+    border: 3px none #ebdbb2;
+    border-width: 3px;
+    background-color: rgba(40, 40, 40, 0.94);
     border-radius: 10px;
 }
 
@@ -11,12 +11,12 @@ window {
     margin: 4px;
     padding-left: 20px;
     border: none;
-    border-width: 4px;
+    border-width: 3px;
     color: #ebdbb2;
     font-family: Hack Nerd Font;
     font-size: 14px;
     font-weight: bold;
-    background-color: #282828;
+    background-color: none;
     /* background: ; */
    	outline: none;
     border-radius: 10px;
@@ -24,29 +24,29 @@ window {
     margin-bottom: 2px;
 }
 #input:focus {
-    border: 0px solid #282828;
+    border: 0px solid transparent;
     margin-bottom: 0px;
 }
 
 #inner-box {
     margin: 4px;
-    border: 10px solid #282828;
+    border: 10px solid transparent;
     color: #ebdbb2;
     font-weight: bold;
-    background-color: #282828;
+    background-color: transparent;
     /* background-color: red; */
     border-radius: 10px;
 }
 
 #outer-box {
     margin: 0px;
-    border: 3px solid #ebdbb2;
+    border: 0px solid #ebdbb2;
     border-radius: 10px;
-    background-color: #282828;
+    background-color: rgba(40, 40, 40, 0.94);
 }
 
 #scroll {
-    background-color: #282828;
+    background-color: transparent;
     margin-top: 5px;
     border: none;
     border-radius: 10px;
@@ -63,7 +63,23 @@ window {
     border-radius: 10px;
 }
 
+#img:unselected {
+    background-color: transparent;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
 #text:selected {
+    color: #ebdbb2;
+    margin: 0px 0px;
+    border: none;
+    border-color: #ebdbb2;
+    border-width: 3px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+#text:unselected {
     color: #ebdbb2;
     margin: 0px 0px;
     border: none;
@@ -84,5 +100,5 @@ window {
     margin: 0px 0px;
     border: none;
     border-radius: 10px;
-    background-color: #ebdbb2;
+    background-color: transparent; 
 }
