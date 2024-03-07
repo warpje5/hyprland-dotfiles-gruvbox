@@ -8,14 +8,14 @@
 }
 
 window#waybar {
-    background: rgba(40, 40, 40, 0);
+    background: transparent; 
     color: #ebdbb2;
     margin: 0px;
     padding: 0px;
 }
 
 tooltip {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     border-radius: 10px;
     border-width: 3px;
     border-style: solid;
@@ -27,7 +27,7 @@ tooltip {
     border: none;
     border-radius: 10px;
     transition-duration: .3s;
-    background: #282828;
+    background: none; 
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -36,20 +36,26 @@ tooltip {
     color: #ebdbb2;
     border: none;
     border-radius: 10px;
-	  background: #282828;
+	  background: none; 
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #workspaces button.focused {
     color: #ebdbb2;
-    background: #282828;
+    background: none; 
     border-radius: 10px;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #workspaces button.persistent {
     color: #928374; 
-    background: #282828;
+    background: none; 
     border: none;
     border-radius: 10px;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #workspaces button.empty {
@@ -57,6 +63,8 @@ tooltip {
     background: transparent;
     border: none;
     border-radius: 10px;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #workspaces button:hover {
@@ -64,26 +72,34 @@ tooltip {
     border-color: transparent;
     color: #d79921;
     border-radius: 10px;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #workspaces button.special {
     color: #fabd2f;
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     border-radius: 10px;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #workspaces button.active,
 #workspaces button.visible {
     color: #ebdbb2; 
-    background: #282828;
+    background: none; 
     border: none;
     border-radius: 10px;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #workspaces button.urgent {
     color: #cc241d;
-    background: #282828;
+    background: none; 
     border-radius: 10px;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #language,
@@ -111,7 +127,7 @@ tooltip {
 }
 
 #tray {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     border-radius: 10px;
     border-width: 3px;
     border-style: solid;
@@ -120,7 +136,7 @@ tooltip {
 }
 
 #workspaces {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     border-radius: 10px;
     border-width: 3px;
     border-style: solid;
@@ -138,7 +154,7 @@ tooltip {
 }
 
 #language {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     color: #ebdbb2;
     border-width: 3px;
     border-style: solid;
@@ -150,7 +166,7 @@ tooltip {
 }
 
 #keyboard-state {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94); 
     color: #ebdbb2;
     border-radius: 0px;
     border-width: 3px;
@@ -158,13 +174,10 @@ tooltip {
     border-color: #ebdbb2;
     border-left: 0px;
     border-right: 0px;
-    margin-left: -8px;
-    padding-right: 3px;
-    padding-left: 0px;
 }
 
 #custom-updates {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     color: #ebdbb2;
     border-width: 3px;
     border-style: solid;
@@ -174,7 +187,7 @@ tooltip {
 }
 
 #window {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     border-width: 3px;
     border-style: solid;
     border-color: #ebdbb2;
@@ -184,7 +197,7 @@ tooltip {
 }
 
 #clock {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     color: #ebdbb2;
     border-width: 3px;
     border-style: solid;
@@ -201,7 +214,7 @@ tooltip {
 }
 
 #pulseaudio {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     color: #ebdbb2;
     border-width: 3px;
     border-style: solid;
@@ -211,7 +224,7 @@ tooltip {
 }
 
 #pulseaudio.microphone {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     color: #ebdbb2;
     border-width: 3px;
     border-style: solid;
@@ -219,8 +232,6 @@ tooltip {
     border-radius: 0px;
     border-left: 0px;
     border-right: 0px;
-    margin-left: -10px;
-    margin-right: -8px;
 }
 
 #battery {
@@ -231,7 +242,7 @@ tooltip {
 }
 
 #custom-weather {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     color: #ebdbb2;
     border-radius: 0px 10px 10px 0px;
     border-width: 3px;
@@ -241,7 +252,7 @@ tooltip {
 }
 
 #custom-media {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     border-radius: 10px;
     border-width: 3px;
     border-style: solid;
@@ -250,7 +261,7 @@ tooltip {
 }
 
 #idle_inhibitor { 
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     color: #ebdbb2;
     border-width: 3px;
     border-style: solid;
@@ -263,7 +274,7 @@ tooltip {
 }
 
 #custom-power {
-    background: #282828;
+    background: rgba(40, 40, 40, 0.94);
     color: #ebdbb2;
     border-width: 3px;
     border-style: solid;
@@ -272,7 +283,6 @@ tooltip {
     border-left: 0px;
     margin-left: 0px;
     margin-right: 6px;
-    padding-right: 10px;
 }
 
 
