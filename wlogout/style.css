@@ -11,15 +11,15 @@ button {
     background-size: 50%;
     border-style: solid;
     border-radius: 10px;
-	  border-width: 3px;
+	  border-width: 2px;
     border-color: #ebdbb2;
-	  background-color: rgba(40, 40, 40, 0.9);
+	  background-color: rgba(40, 40, 40, 0.92);
     margin: 10px;
     transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: rgba(104, 157, 106, 0.9);
+    background-color: rgba(104, 157, 106, 0.92);
     color: #282828;
 }
 
