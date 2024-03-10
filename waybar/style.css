@@ -8,16 +8,16 @@
 }
 
 window#waybar {
-    background: transparent; 
+    background: transparent;
     color: #ebdbb2;
     margin: 0px;
     padding: 0px;
 }
 
 tooltip {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     border-radius: 10px;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
 }
@@ -26,8 +26,8 @@ tooltip {
     color: #665c54;
     border: none;
     border-radius: 10px;
-    transition-duration: .3s;
-    background: none; 
+    transition-duration: 0.3s;
+    background: none;
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -36,22 +36,22 @@ tooltip {
     color: #ebdbb2;
     border: none;
     border-radius: 10px;
-	  background: none; 
+    background: none;
     box-shadow: inherit;
     text-shadow: inherit;
 }
 
 #workspaces button.focused {
     color: #ebdbb2;
-    background: none; 
+    background: none;
     border-radius: 10px;
     box-shadow: inherit;
     text-shadow: inherit;
 }
 
 #workspaces button.persistent {
-    color: #928374; 
-    background: none; 
+    color: #928374;
+    background: none;
     border: none;
     border-radius: 10px;
     box-shadow: inherit;
@@ -59,7 +59,7 @@ tooltip {
 }
 
 #workspaces button.empty {
-    color: #504945; 
+    color: #504945;
     background: transparent;
     border: none;
     border-radius: 10px;
@@ -78,7 +78,7 @@ tooltip {
 
 #workspaces button.special {
     color: #fabd2f;
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     border-radius: 10px;
     box-shadow: inherit;
     text-shadow: inherit;
@@ -86,8 +86,8 @@ tooltip {
 
 #workspaces button.active,
 #workspaces button.visible {
-    color: #ebdbb2; 
-    background: none; 
+    color: #ebdbb2;
+    background: none;
     border: none;
     border-radius: 10px;
     box-shadow: inherit;
@@ -96,7 +96,7 @@ tooltip {
 
 #workspaces button.urgent {
     color: #cc241d;
-    background: none; 
+    background: none;
     border-radius: 10px;
     box-shadow: inherit;
     text-shadow: inherit;
@@ -127,18 +127,18 @@ tooltip {
 }
 
 #tray {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     border-radius: 10px;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
-    border-color: #ebdbb2; 
+    border-color: #ebdbb2;
     margin-right: 8px;
 }
 
 #workspaces {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     border-radius: 10px;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
     margin-left: 8px;
@@ -154,9 +154,9 @@ tooltip {
 }
 
 #language {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
     border-left: 0px;
@@ -166,10 +166,10 @@ tooltip {
 }
 
 #keyboard-state {
-    background: rgba(40, 40, 40, 0.94); 
+    background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
     border-radius: 0px;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
     border-left: 0px;
@@ -177,9 +177,9 @@ tooltip {
 }
 
 #custom-updates {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
     border-radius: 10px 0px 0px 10px;
@@ -187,8 +187,8 @@ tooltip {
 }
 
 #window {
-    background: rgba(40, 40, 40, 0.94);
-    border-width: 3px;
+    background: rgba(40, 40, 40, 0.92);
+    border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
     border-radius: 10px;
@@ -197,11 +197,11 @@ tooltip {
 }
 
 #clock {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
-    border-color: #ebdbb2; 
+    border-color: #ebdbb2;
     border-radius: 10px 0px 0px 10px;
     margin-left: 6px;
     border-right: 0px;
@@ -214,9 +214,9 @@ tooltip {
 }
 
 #pulseaudio {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
     border-left: 0px;
@@ -224,9 +224,9 @@ tooltip {
 }
 
 #pulseaudio.microphone {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
     border-radius: 0px;
@@ -242,28 +242,28 @@ tooltip {
 }
 
 #custom-weather {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
     border-radius: 0px 10px 10px 0px;
-    border-width: 3px;
+    border-width: 2px;
     border-left: 0px;
     border-style: solid;
     border-color: #ebdbb2;
 }
 
 #custom-media {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     border-radius: 10px;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
-    border-color: #ebdbb2; 
+    border-color: #ebdbb2;
     margin-right: 8px;
 }
 
-#idle_inhibitor { 
-    background: rgba(40, 40, 40, 0.94);
+#idle_inhibitor {
+    background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
     border-left: 0px;
@@ -274,9 +274,9 @@ tooltip {
 }
 
 #custom-power {
-    background: rgba(40, 40, 40, 0.94);
+    background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
     border-radius: 0px 10px 10px 0px;
@@ -284,6 +284,3 @@ tooltip {
     margin-left: 0px;
     margin-right: 6px;
 }
-
-
-
