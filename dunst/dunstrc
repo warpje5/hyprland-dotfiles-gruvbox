@@ -9,7 +9,7 @@
     padding = 8
     horizontal_padding = 8
     text_icon_padding = 0
-    frame_width = 3
+    frame_width = 2
 
     frame_color = "#EBDBB2"
     separator_color = frame
@@ -25,8 +25,6 @@
     word_wrap = yes
     stack_duplicates = true
     hide_duplicate_count = false
-
-    force_wayland = true
 
     show_indicators = yes
 
@@ -45,14 +43,14 @@
     timeout = 7
 
 [urgency_low]
-    background = "#282828F0"
+    background = "#282828EB"
     foreground = "#EBDBB2"
 
 [urgency_normal]
-    background = "#282828F0"
+    background = "#282828EB"
     foreground = "#EBDBB2"
 
 [urgency_critical]
-    background = "#282828F0"
+    background = "#282828EB"
     foreground = "#EBDBB2"
     frame_color = "#FB4943"
