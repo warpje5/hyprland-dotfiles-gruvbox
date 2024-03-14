@@ -1,9 +1,9 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Hack Nerd Font;
-    font-weight: bold;
-    font-size: 13px;
+    font-family: Iosevka Nerd Font;
+    font-weight: 700;
+    font-size: 15px;
     min-height: 0;
 }
 
@@ -16,7 +16,7 @@ window#waybar {
 
 tooltip {
     background: rgba(40, 40, 40, 0.92);
-    border-radius: 10px;
+    border-radius: 6px;
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
@@ -25,7 +25,7 @@ tooltip {
 #workspaces button {
     color: #665c54;
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
     transition-duration: 0.3s;
     background: none;
     box-shadow: inherit;
@@ -35,7 +35,7 @@ tooltip {
 #workspaces button.active {
     color: #ebdbb2;
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
     background: none;
     box-shadow: inherit;
     text-shadow: inherit;
@@ -44,7 +44,7 @@ tooltip {
 #workspaces button.focused {
     color: #ebdbb2;
     background: none;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -53,7 +53,7 @@ tooltip {
     color: #928374;
     background: none;
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -62,7 +62,7 @@ tooltip {
     color: #504945;
     background: transparent;
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -71,7 +71,7 @@ tooltip {
     background: none;
     border-color: transparent;
     color: #d79921;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -79,7 +79,7 @@ tooltip {
 #workspaces button.special {
     color: #fabd2f;
     background: rgba(40, 40, 40, 0.92);
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -89,7 +89,7 @@ tooltip {
     color: #ebdbb2;
     background: none;
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -97,7 +97,7 @@ tooltip {
 #workspaces button.urgent {
     color: #cc241d;
     background: none;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -128,27 +128,27 @@ tooltip {
 
 #tray {
     background: rgba(40, 40, 40, 0.92);
-    border-radius: 10px;
+    border-radius: 6px;
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-right: 8px;
+    margin-right: 4px;
 }
 
 #workspaces {
     background: rgba(40, 40, 40, 0.92);
-    border-radius: 10px;
+    border-radius: 6px;
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-left: 8px;
+    margin-left: 4px;
     padding-right: 4px;
     padding-left: 0px;
 }
 
 #custom-caffeine {
     color: #89dceb;
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 6px 0px 0px 6px;
     border-right: 0px;
     margin-left: 10px;
 }
@@ -182,7 +182,7 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 6px 0px 0px 6px;
     border-right: 0px;
 }
 
@@ -191,7 +191,7 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 10px;
+    border-radius: 6px;
     margin-left: 60px;
     margin-right: 60px;
 }
@@ -202,8 +202,8 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 10px 0px 0px 10px;
-    margin-left: 6px;
+    border-radius: 6px 0px 0px 6px;
+    margin-left: 3px;
     border-right: 0px;
 }
 
@@ -244,7 +244,7 @@ tooltip {
 #custom-weather {
     background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 6px 6px 0px;
     border-width: 2px;
     border-left: 0px;
     border-style: solid;
@@ -253,7 +253,7 @@ tooltip {
 
 #custom-media {
     background: rgba(40, 40, 40, 0.92);
-    border-radius: 10px;
+    border-radius: 6px;
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
@@ -279,8 +279,8 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 6px 6px 0px;
     border-left: 0px;
     margin-left: 0px;
-    margin-right: 6px;
+    margin-right: 3px;
 }

@@ -91,12 +91,12 @@
         "return-type" : "json"
     },
     "tray": {
-        "icon-size": 13,
+        "icon-size": 15,
         "spacing": 10
     },
     "clock": {
         "format": "{: %R   %d/%m %a}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<span font='Iosevka Nerd Font Bold 11'><tt><small>{calendar}</small></tt></span>",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
