@@ -3,7 +3,7 @@ window {
     border: 2px none #ebdbb2;
     border-width: 2px;
     background-color: #282828; 
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 #input {
@@ -13,13 +13,13 @@ window {
     border: none;
     border-width: 2px;
     color: #ebdbb2;
-    font-family: Hack Nerd Font;
-    font-size: 14px;
+    font-family: Commissioner;
+    font-size: 16px;
     font-weight: bold;
     background-color: none;
     /* background: ; */
    	outline: none;
-    border-radius: 10px;
+    border-radius: 6px;
     margin: 10px 13px;
     margin-bottom: 2px;
 }
@@ -32,16 +32,16 @@ window {
     margin: 4px;
     border: 10px solid transparent;
     color: #ebdbb2;
-    font-weight: bold;
+    font-weight: normal;
     background-color: transparent;
     /* background-color: red; */
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 #outer-box {
     margin: 0px;
     border: 0px solid #ebdbb2;
-    border-radius: 10px;
+    border-radius: 6px;
     background-color: #282828;
 }
 
@@ -49,7 +49,7 @@ window {
     background-color: transparent;
     margin-top: 5px;
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
     margin-bottom: 5px;
 }
 
@@ -60,13 +60,13 @@ window {
 #img:selected {
     background-color: #ebdbb2;
     margin-right: 10px;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 #img:unselected {
     background-color: transparent;
     margin-right: 10px;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 #text:selected {
@@ -75,7 +75,7 @@ window {
     border: none;
     border-color: #ebdbb2;
     border-width: 2px;
-    border-radius: 10px;
+    border-radius: 6px;
     background-color: transparent;
 }
 
@@ -85,20 +85,20 @@ window {
     border: none;
     border-color: #ebdbb2;
     border-width: 2px;
-    border-radius: 10px;
+    border-radius: 6px;
     background-color: transparent;
 }
 
 #entry {
     margin: 0px 0px;
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
     background-color: transparent;
 }
 
 #entry:selected {
     margin: 0px 0px;
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
     background-color: transparent; 
 }
