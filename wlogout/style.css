@@ -1,5 +1,5 @@
 window {
-    font-family: hack nerd font;
+    font-family: iosevka nerd font;
     font-size: 20pt;
     color: #ebdbb2; /* text */
     background-color: rgba(40, 40, 40, 0.85);
@@ -10,7 +10,7 @@ button {
     background-position: center;
     background-size: 50%;
     border-style: solid;
-    border-radius: 10px;
+    border-radius: 6px;
 	  border-width: 2px;
     border-color: #ebdbb2;
 	  background-color: rgba(40, 40, 40, 0.92);
