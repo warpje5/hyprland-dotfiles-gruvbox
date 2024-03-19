@@ -9,9 +9,11 @@
     "modules-left": [
         "clock",
         "custom/weather",
-        "hyprland/workspaces"
+        "hyprland/workspaces",
     ],
-    "modules-center": ["hyprland/window"],
+    "modules-center": [
+        "custom/playerctl"
+    ],
     "modules-right": [
         "tray",
         "custom/updates",
@@ -21,7 +23,6 @@
         "pulseaudio#microphone",
         "custom/power"
     ],
-
     "hyprland/window": {
         "format": "{}"
     },
@@ -35,12 +36,12 @@
         "format": "{icon}",
         "format-icons": {
               "1": "",
-		          "2": "",
-		          "3": "",
-		          "4": "",
-		          "5": "󰍨",
+              "2": "",
+              "3": "",
+              "4": "",
+              "5": "󰍨",
               "urgent": "",
-		          "default": "",
+              "default": "",
               "magic": "󰐃",
         },
         "persistent_workspaces": {
@@ -68,12 +69,12 @@
     },
     "keyboard-state": {
         "numlock": false,
-	      "capslock": true,
-	      "format": "{icon}",
-	      "format-icons": {
-		    "locked": "󰪛",
-		    "unlocked": ""
-	      }
+        "capslock": true,
+        "format": "{icon}",
+        "format-icons": {
+            "locked": "󰪛",
+            "unlocked": ""
+        }
     },   
     "idle_inhibitor": {
         "tooltip": false,
@@ -81,7 +82,7 @@
         "format-icons": {
             "activated": "",
             "deactivated": ""
-             }
+        }
     },
     "custom/weather" : {
         "tooltip" : true,
@@ -95,39 +96,21 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{: %R   %d/%m %a}",
+        "locale": "ru_RU.UTF-8",
+        "timezone": "Europe/Moscow",
+        "format": "{:L%R  %d/%m %a}",
         "tooltip-format": "<span font='Iosevka Nerd Font Bold 11'><tt><small>{calendar}</small></tt></span>",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
             "format": {
-			          "months":     "<span color='#98971a'><b>{}</b></span>",
-			          "days":       "<span color='#ebdbb2'><b>{}</b></span>",
-			          "weeks":      "<span color='#7c6f64'><b>W{}</b></span>",
-			          "weekdays":   "<span color='#fabd2f'><b>{}</b></span>",
-		            "today":      "<span color='#d79921'><b><u>{}</u></b></span>"
-		            }
+                "months":     "<span color='#98971a'><b>{}</b></span>",
+                "days":       "<span color='#ebdbb2'><b>{}</b></span>",
+                "weeks":      "<span color='#7c6f64'><b>W{}</b></span>",
+                "weekdays":   "<span color='#fabd2f'><b>{}</b></span>",
+                "today":      "<span color='#d79921'><b><u>{}</u></b></span>"
+            }
         }
-    },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", ""],
-        "on-scroll-up": "brightnessctl set 1%+",
-        "on-scroll-down": "brightnessctl set 1%-",
-        "min-length": 6
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
@@ -161,20 +144,45 @@
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
-		},
-    "custom/media": {
-        "format": "{icon} {}",
+    },
+    "custom/playerctl": {
+        "format": "{icon}  <span>{}</span>",
         "return-type": "json",
-        "max-length": 40,
+        "exec": "playerctl -p spotify metadata -f '{\"text\": \"{{markup_escape(title)}} - {{markup_escape(artist)}}  {{ duration(position) }}/{{ duration(mpris:length) }}\", \"tooltip\": \"{{markup_escape(title)}} - {{markup_escape(artist)}}  {{ duration(position) }}/{{ duration(mpris:length) }}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "tooltip": false,
+        "on-click-middle": "playerctl -p spotify previous",
+        "on-click": "playerctl -p spotify play-pause",
+        "on-click-right": "playerctl -p spotify next",
+        "on-scroll-up": "playerctl -p spotify position 5+",
+        "on-scroll-down": "playerctl -p spotify position 5-",
         "format-icons": {
-            "spotify-launcher": "",
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        // "exec": "$HOME/.config/waybar/mediaplayer/mediaplayer 2> /dev/null" // Script in resources folder
-        "exec": "$HOME/.config/waybar/mediaplayer/mediaplayer --player spotify-launcher 2> /dev/null" // Filter player based on name
-    }
-
+            "Paused": " ",
+            "Playing": " "
+        }
+    },
+    "cava": {
+        "framerate": 30,
+        "autosens": 1,
+        "sensitivity": 100,
+        "bars": 14,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "method": "pulse",
+        "source": "auto",
+        "stereo": true,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.77,
+        "input_delay": 2,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+                   "on-click-right": "mode"
+        }
+    },
+    "custom/cava": {
+        "exec": "sleep 3 && cava -p /home/warp/.config/cava/cava.conf | sed -u 's/;//g;s/0/0/g;s/1/1/g;s/2/2/g;s/3/3/g;s/4/4/g;s/5/5/g;s/6/6/g;s/7/7/g;s/8/8/g;s/9/9/g;'"
+    },
 }
 
