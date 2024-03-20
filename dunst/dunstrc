@@ -4,7 +4,7 @@
 
     offset = 3x3
 
-    separator_height = 3
+    separator_height = 2
 
     padding = 8
     horizontal_padding = 8
@@ -54,3 +54,4 @@
     background = "#282828EB"
     foreground = "#EBDBB2"
     frame_color = "#FB4943"
+
