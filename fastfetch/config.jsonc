@@ -7,7 +7,7 @@
   "logo": {
     "source": "~/.config/fastfetch/arch",
     "color": {
-      "1": "blue"
+      "1": "magenta"
     },
     "type": "file",
     "padding": {
