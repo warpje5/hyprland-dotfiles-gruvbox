@@ -7,20 +7,20 @@
     "gtk-layer-shell": true,
     "height": 0,
     "modules-left": [
-        "clock",
+        "custom/updates",
+        "idle_inhibitor",
         "custom/weather",
-        "hyprland/workspaces",
+        "hyprland/workspaces"
     ],
     "modules-center": [
-        "custom/playerctl"
+        "custom/playerctl",
+        "pulseaudio",
+        "pulseaudio#microphone"
     ],
     "modules-right": [
         "tray",
-        "custom/updates",
-        "idle_inhibitor",
         "hyprland/language",
-        "pulseaudio",
-        "pulseaudio#microphone",
+        "clock",
         "custom/power"
     ],
     "hyprland/window": {
@@ -99,7 +99,7 @@
         "locale": "ru_RU.UTF-8",
         "timezone": "Europe/Moscow",
         "format": "{:L%R  %d/%m %a}",
-        "tooltip-format": "<span font='Iosevka Nerd Font Bold 11'><tt><small>{calendar}</small></tt></span>",
+        "tooltip-format": "<span font='FantasqueSansM Nerd Font Bold 11'><tt><small>{calendar}</small></tt></span>",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -117,8 +117,8 @@
         "tooltip": false,
         "format-muted": " Muted",
         "on-click": "pamixer -t",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
+        "on-scroll-up": "pamixer -i 2",
+        "on-scroll-down": "pamixer -d 2",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
@@ -141,23 +141,23 @@
         "tooltip": false,
         "format-source-muted": " Muted",
         "on-click": "pamixer --default-source -t",
-        "on-scroll-up": "pamixer --default-source -i 5",
-        "on-scroll-down": "pamixer --default-source -d 5",
+        "on-scroll-up": "pamixer --default-source -i 2",
+        "on-scroll-down": "pamixer --default-source -d 2",
         "scroll-step": 5
     },
     "custom/playerctl": {
         "format": "{icon}  <span>{}</span>",
         "return-type": "json",
-        "exec": "playerctl -p spotify metadata -f '{\"text\": \"{{markup_escape(title)}} - {{markup_escape(artist)}}  {{ duration(position) }}/{{ duration(mpris:length) }}\", \"tooltip\": \"{{markup_escape(title)}} - {{markup_escape(artist)}}  {{ duration(position) }}/{{ duration(mpris:length) }}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "exec": "playerctl -p spotify metadata -f '{\"text\": \"{{markup_escape(title)}} - {{markup_escape(artist)}} {{ duration(position) }}/{{ duration(mpris:length) }}\", \"tooltip\": \"{{markup_escape(title)}} - {{markup_escape(artist)}}  {{ duration(position) }}/{{ duration(mpris:length) }}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
         "tooltip": false,
         "on-click-middle": "playerctl -p spotify previous",
         "on-click": "playerctl -p spotify play-pause",
         "on-click-right": "playerctl -p spotify next",
-        "on-scroll-up": "playerctl -p spotify position 5+",
-        "on-scroll-down": "playerctl -p spotify position 5-",
+        "on-scroll-up": "playerctl -p spotify volume 0.02+",
+        "on-scroll-down": "playerctl -p spotify volume 0.02-",
         "format-icons": {
-            "Paused": " ",
-            "Playing": " "
+            "Paused": "",
+            "Playing": ""
         }
     },
     "cava": {

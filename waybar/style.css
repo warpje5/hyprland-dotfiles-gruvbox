@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Iosevka Nerd Font;
+    font-family: FantasqueSansM Nerd Font;
     font-weight: 700;
     font-size: 15px;
     min-height: 0;
@@ -162,10 +162,9 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-left: 0px;
     border-right: 0px;
+    border-radius: 6px 0px 0px 6px;
     min-width: 24px;
-    margin-right: 0px;
 }
 
 #keyboard-state {
@@ -187,6 +186,7 @@ tooltip {
     border-color: #ebdbb2;
     border-radius: 6px 0px 0px 6px;
     border-right: 0px;
+    margin-left: 4px;
 }
 
 #window {
@@ -204,9 +204,9 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 6px;
+    border-radius: 6px 0px 0px 6px;
+    border-right: 0px;
     margin-left: 4px;
-    margin-right: 4px;
 }
 
 #custom-cava {
@@ -233,9 +233,9 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 6px 0px 0px 6px;
-    margin-left: 3px;
+    border-radius: 0px;
     border-right: 0px;
+    border-left: 0px;
 }
 
 #network {
@@ -250,8 +250,9 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-left: 0px;
     border-right: 0px;
+    border-left: 0px;
+    border-radius: 0px;
 }
 
 #pulseaudio.microphone {
@@ -260,9 +261,9 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 0px;
+    border-radius: 0px 6px 6px 0px;
     border-left: 0px;
-    border-right: 0px;
+    margin-right: 4px;
 }
 
 #battery {
