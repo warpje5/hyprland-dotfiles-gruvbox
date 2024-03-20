@@ -1,4 +1,4 @@
-20/03/24 - iosevka was cool, but way too narrow. i decided to give a shot FantasqueSansM Nerd Font, make sure to install it, looks beautiful, nice for coding too. besides that i changed waybar layout a bit to more traditional look with clocks at right side. also dont forget about xcursor, now you cant set it via hyrpctl setcursor.
+20/03/24 - iosevka was cool, but way too narrow. i decided to give a shot FantasqueSansM Nerd Font, make sure to install it, looks beautiful, nice for coding too. besides that i changed waybar layout to a bit more traditional look with clocks at right side. also dont forget about xcursor, now you cant set it via hyrpctl setcursor.
 
 14/03/24 - i keep develope thin compact theme from previous update. now i decide to switch from hack font to iosevka. its a good way to make accent on thin theme. im fairly satisfied with result tbh. hope you like it too.
 
