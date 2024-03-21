@@ -15,36 +15,36 @@
  ;; If there is more than one, they won't work right.
  )
 
- ;; Flyspells settings
+;; Flyspells settings
 (require 'ispell)
 (add-to-list 'ispell-local-dictionary-alist '("ru_RU"
-                                          "[[:alpha:]]"
-                                          "[^[:alpha:]]"
-                                          "[']"
-                                          t
-                                          ("-d" "ru_RU"); Dictionary file name
-                                          nil
-                                          utf-8))
+                                              "[[:alpha:]]"
+                                              "[^[:alpha:]]"
+                                              "[']"
+                                              t
+                                              ("-d" "ru_RU"); Dictionary file name
+                                              nil
+                                              utf-8))
 
 (add-to-list 'ispell-local-dictionary-alist '("en_US"
-                                          "[[:alpha:]]"
-                                          "[^[:alpha:]]"
-                                          "[']"
-                                          t
-                                          ("-d" "en_US")
-                                          nil
-                                          utf-8))
+                                              "[[:alpha:]]"
+                                              "[^[:alpha:]]"
+                                              "[']"
+                                              t
+                                              ("-d" "en_US")
+                                              nil
+                                              utf-8))
 
 (setq ispell-program-name "hunspell"          ; Use hunspell to correct mistakes
-  ispell-dictionary   "en_US") ; Default dictionary to use
+      ispell-dictionary   "en_US")            ; Default dictionary to use
 
 (defun  fd-switch-dictionary()
-"Switch russian and english dictionaries."
-(interactive)
-(let* ((dict ispell-current-dictionary)
-     (new (if (string= dict "ru_RU") "en_US"
-               "ru_RU")))
-(ispell-change-dictionary new)
-(message "Switched dictionary from %s to %s" dict new)))
+  "Switch russian and english dictionaries."
+  (interactive)
+  (let* ((dict ispell-current-dictionary)
+         (new (if (string= dict "ru_RU") "en_US"
+                "ru_RU")))
+    (ispell-change-dictionary new)
+    (message "Switched dictionary from %s to %s" dict new)))
 
 (global-set-key (kbd "<f8>") 'fd-switch-dictionary)
