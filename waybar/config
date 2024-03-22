@@ -7,9 +7,9 @@
     "gtk-layer-shell": true,
     "height": 0,
     "modules-left": [
+        "custom/weather",
         "custom/updates",
         "idle_inhibitor",
-        "custom/weather",
         "hyprland/workspaces"
     ],
     "modules-center": [
@@ -80,8 +80,8 @@
         "tooltip": false,
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": " ",
+            "deactivated": " "
         }
     },
     "custom/weather" : {

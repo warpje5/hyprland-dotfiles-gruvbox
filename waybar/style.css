@@ -184,9 +184,9 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 6px 0px 0px 6px;
+    border-radius: 0px;
     border-right: 0px;
-    margin-left: 3px;
+    border-left: 0px;
 }
 
 #window {
@@ -276,11 +276,12 @@ tooltip {
 #custom-weather {
     background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-radius: 0px 6px 6px 0px;
+    border-radius: 6px 0px 0px 6px;
     border-width: 2px;
-    border-left: 0px;
+    border-right: 0px;
     border-style: solid;
     border-color: #ebdbb2;
+    margin-left: 3px;
 }
 
 #custom-media {
@@ -299,9 +300,7 @@ tooltip {
     border-style: solid;
     border-color: #ebdbb2;
     border-left: 0px;
-    border-right: 0px;
-    padding-right: 8px;
-    padding-left: 2px;
+    border-radius: 0px 6px 6px 0px;
     min-width: 18px;
 }
 
