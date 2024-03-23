@@ -8,6 +8,7 @@
 
 04/02/24 - big update, we are moving to thinner, less rounded, and more light style. We have smaller fonts and less gaps. I think its time to move to more utilitary direction, big gaps and thick borders just take too much space, althought its looks good. I tried to save same aestetics, but make theme less heavy.
 
+nvim files are not maintained, because i managed to fully switch to emacs somehow. sorry.
 
 Cursors - capitaine cursors gruvbox (gnome-look.org)
 
