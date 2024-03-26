@@ -1,4 +1,4 @@
-timeout 600 'swaylock -f'
-timeout 1200 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
-timeout 1800 'systemctl suspend'
-before-sleep 'swaylock -f'
+timeout 300 'swaylock -f'
+timeout 900 'hyprctl dispatch dpms off' resume 'sleep 3; hyprctl dispatch dpms on'
+timeout 1200 'systemctl suspend -i'
+before-sleep 'swaylock -f --grace 0'
