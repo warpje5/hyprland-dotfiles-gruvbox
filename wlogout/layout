@@ -25,7 +25,7 @@
 }
 {
     "label" : "suspend",
-    "action" : "systemctl suspend",
+    "action" : "swaylock -f --grace 0; systemctl suspend -i",
     "text" : " Suspend (Z)",
     "keybind" : "z"
 }
