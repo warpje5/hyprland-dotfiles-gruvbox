@@ -1,9 +1,9 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: FantasqueSansM Nerd Font;
+    font-family: BlexMono Nerd Font;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 13px;
     min-height: 0;
 }
 
@@ -84,7 +84,6 @@ tooltip {
     text-shadow: inherit;
 }
 
-#workspaces button.active,
 #workspaces button.visible {
     color: #ebdbb2;
     background: none;
@@ -145,8 +144,8 @@ tooltip {
     border-style: solid;
     border-color: #ebdbb2;
     margin-left: 4px;
-    padding-right: 4px;
-    padding-left: 0px;
+    padding-right: 3px;
+    padding-left: 3px;
 }
 
 #custom-caffeine {
@@ -314,4 +313,5 @@ tooltip {
     border-left: 0px;
     margin-left: 0px;
     margin-right: 3px;
+    padding-right: 14px;
 }

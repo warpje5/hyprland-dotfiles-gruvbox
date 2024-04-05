@@ -35,14 +35,13 @@
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
-              "1": "",
+              "1": "",
               "2": "",
-              "3": "",
-              "4": "",
-              "5": "",
-              "6": "",
+              "3": "",
+              "4": "",
+              "5": "",
               "urgent": "",
-              "default": "",
+              "default": "",
               "magic": "󰐃",
         },
         "persistent-workspaces": {
@@ -51,7 +50,6 @@
             "3": [],
             "4": [],
             "5": [],
-            "6": [],
         },
         "sort-by-number": true,
     },
@@ -94,14 +92,14 @@
         "return-type" : "json"
     },
     "tray": {
-        "icon-size": 15,
-        "spacing": 10
+        "icon-size": 12,
+        "spacing": 8
     },
     "clock": {
         "locale": "ru_RU.UTF-8",
         "timezone": "Europe/Moscow",
         "format": "{:L%R  %d/%m %a}",
-        "tooltip-format": "<span font='FantasqueSansM Nerd Font Bold 11'><tt><small>{calendar}</small></tt></span>",
+        "tooltip-format": "<span font='BlexMono Nerd Font Bold 11'><tt><small>{calendar}</small></tt></span>",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -133,7 +131,7 @@
         }
     },
     "custom/power": {
-        "format": "⏻ ",
+        "format": "⏻",
         "tooltip": false,
         "on-click": "wlogout -b 5 --protocol layer-shell"
     },
@@ -155,11 +153,13 @@
         "on-click-middle": "playerctl -p spotify previous",
         "on-click": "playerctl -p spotify play-pause",
         "on-click-right": "playerctl -p spotify next",
+        "on-click-forward": "playerctl -p spotify position 10+",
+        "on-click-backward": "playerctl -p spotify position 10-",
         "on-scroll-up": "playerctl -p spotify volume 0.02+",
         "on-scroll-down": "playerctl -p spotify volume 0.02-",
         "format-icons": {
-            "Paused": "",
-            "Playing": ""
+            "Paused": "",
+            "Playing": ""
         }
     },
     "cava": {
