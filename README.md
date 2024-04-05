@@ -1,3 +1,5 @@
+05/04/24 - switching fonts again, now its IBM Plex Family (and BlexMono Nerd Font), i believe its the last stop for me. since fa icons changed a bit now, we fixing it. next, switch from redshift wayland for to gammastep, good thing is configs almost the same.
+
 01/04/24 - changing commissioner font to inter, make sure to install it "yay -S ttf-inter", added some necessary window rules.
 
 20/03/24 - iosevka was cool, but way too narrow. i decided to give a shot FantasqueSansM Nerd Font, make sure to install it, looks beautiful, nice for coding too. besides that i changed waybar layout to a bit more traditional look with clocks at right side. also dont forget about xcursor, now you cant set it via hyrpctl setcursor.
@@ -18,9 +20,9 @@ Icons - gruvbox-plus-dark
 
 Theme - gruvbox-dark-bl-lb
 
-Fonts used - Hack Nerd Font, Commissioner, awesome font, Iosevka Nerd Font, IosevkaTerm Nerd Font,
+Fonts used - IBM Plex font family, BlexMono Nerd Font
 
 Necessary apps - playerctl, grimshot, nm-applet, 
-blueman-applet, nwg-look, swaylock-effects!!!, wlogout!!!, redshift!!!, starship, doom emacs (as ide), nvchad (for fast editing), cliphist and everything for it, 
+blueman-applet, nwg-look, swaylock-effects!!!, wlogout!!!, gammastep, starship, doom emacs (as ide), nvchad (for fast editing), cliphist and everything for it, 
 
-keep in mind, theme looks way better with redshift warm colors, place your location in config to switch between day/night modes automatically
+keep in mind, theme looks way better with gammastep warm colors, place your location in config to switch between day/night modes automatically
