@@ -1,6 +1,7 @@
-width=550
+width=700
 height=400
 location=center
+columns=2
 show=drun
 prompt=
 filter_rate=100
