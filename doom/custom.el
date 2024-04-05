@@ -7,7 +7,8 @@
  '(highlight-indent-guides-auto-even-face-perc 54)
  '(highlight-indent-guides-auto-odd-face-perc 27)
  '(highlight-indent-guides-method 'column)
- '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'"))
+ '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
+ '(package-selected-packages '(evil-multiedit eg)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
