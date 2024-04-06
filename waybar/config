@@ -37,8 +37,8 @@
         "format-icons": {
               "1": "",
               "2": "",
-              "3": "",
-              "4": "",
+              "3": "",
+              "4": "",
               "5": "",
               "urgent": "",
               "default": "",
@@ -93,7 +93,7 @@
     },
     "tray": {
         "icon-size": 12,
-        "spacing": 8
+        "spacing": 12
     },
     "clock": {
         "locale": "ru_RU.UTF-8",
