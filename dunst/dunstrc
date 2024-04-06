@@ -16,7 +16,7 @@
 
     sort = yes
     idle_threshold = 120
-    font = FantasqueSansM Nerd Font 11
+    font = IBM Plex Sans 10
     line_height = 0
     markup = full
     alignment = left
@@ -39,7 +39,7 @@
     title = Dunst
     class = Dunst
 
-    corner_radius = 6
+    corner_radius = 4
     timeout = 7
 
 [urgency_low]
