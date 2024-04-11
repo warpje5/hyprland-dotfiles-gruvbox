@@ -1,3 +1,5 @@
+12/04/24 - now we need waybay-cava instead of regular waybar. waybar config cleaned a bit, fixing height to match gaps
+
 05/04/24 - switching fonts again, now its IBM Plex Family (and BlexMono Nerd Font), i believe its the last stop for me. since fa icons changed a bit now, we fixing it. next, switch from redshift wayland for to gammastep, good thing is configs almost the same.
 
 01/04/24 - changing commissioner font to inter, make sure to install it "yay -S ttf-inter", added some necessary window rules.
