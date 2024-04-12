@@ -1,6 +1,7 @@
 [global]
     follow = mouse
-    indicate_hidden = yes
+    indicate_hidden = true
+    enable_posix_regex = true
 
     offset = 3x3
 
@@ -14,7 +15,7 @@
     frame_color = "#EBDBB2"
     separator_color = frame
 
-    sort = yes
+    sort = true
     idle_threshold = 120
     font = IBM Plex Sans 10
     line_height = 0
@@ -22,16 +23,17 @@
     alignment = left
     vertical_alignment = center
     show_age_threshold = 60
-    word_wrap = yes
+    word_wrap = true
     stack_duplicates = true
     hide_duplicate_count = false
 
-    show_indicators = yes
+    show_indicators = true
 
     min_icon_size = 0
     max_icon_size = 64
 
     icon_path = /usr/share/icons/Gruvbox-Plus-Dark/status/16/:/usr/share/icons/Gruvbox-Plus-Dark/devices/16/:/usr/share/icons/Gruvbox-Plus-Dark/actions/16/:/usr/share/icons/Gruvbox-Plus-Dark/animations/22/:/usr/share/icons/Gruvbox-Plus-Dark/apps/16/:/usr/share/icons/Gruvbox-Plus-Dark/categories/16/:/usr/share/icons/Gruvbox-Plus-Dark/devices/16/:/usr/share/icons/Gruvbox-Plus-Dark/emotes/16/:/usr/share/icons/Gruvbox-Plus-Dark/mimetypes/16/:/usr/share/icons/Gruvbox-Plus-Dark/panel/16/:/usr/share/icons/Gruvbox-Plus-Dark/places/16/
+    icon_theme = Gruvbox-Plus-Dark
 
     dmenu = /usr/bin/wofi -d dunst:
     browser = /usr/bin/vivaldi --new-tab
