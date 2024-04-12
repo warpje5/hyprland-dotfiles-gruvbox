@@ -21,7 +21,6 @@ tooltip {
 }
 
 #workspaces button {
-    color: #665c54;
     border: none;
     transition-duration: 0.3s;
     background: none;
@@ -31,12 +30,6 @@ tooltip {
 }
 
 #workspaces button.active {
-    color: #ebdbb2;
-    border: none;
-    border-radius: 4px;
-}
-
-#workspaces button.focused {
     color: #ebdbb2;
 }
 
