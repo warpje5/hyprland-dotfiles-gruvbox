@@ -1,10 +1,12 @@
 {
     "layer": "top",
     "position": "top",
-    "mod": "dock",
-    "exclusive": true,
+    "mode": "dock",
+    "exclusive": false,
     "passthrough": false,
     "gtk-layer-shell": true,
+    "ipc": true,
+    "reload_style_on_change": true,
     "height": 0,
     "modules-left": [
         "custom/weather",
