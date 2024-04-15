@@ -3,7 +3,8 @@
     indicate_hidden = true
     enable_posix_regex = true
 
-    offset = 3x3
+    width = 293
+    offset = 2x2
 
     separator_height = 2
 
