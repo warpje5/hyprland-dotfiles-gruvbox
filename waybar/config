@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "mode": "dock",
-    "exclusive": false,
+    "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
     "ipc": true,
@@ -39,8 +39,8 @@
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
-              "1": "",
-              "2": "",
+              "1": "",
+              "2": "",
               "3": "",
               "4": "",
               "5": "",
@@ -68,9 +68,8 @@
     },
     "hyprland/language": {
         "format": "{}",
-        "format-ru": "Rus",
-        "format-us": "Eng",
         "format-en": "Eng",
+        "format-ru": "Rus"
     },
     "keyboard-state": {
         "numlock": false,
@@ -99,7 +98,7 @@
     },
     "tray": {
         "icon-size": 12,
-        "spacing": 10
+        "spacing": 7
     },
     "clock": {
         "locale": "ru_RU.UTF-8",
@@ -191,4 +190,15 @@
                    "on-click-right": "mode"
         }
     },
+    "battery": {
+        "bat": "hidpp_battery_0",
+        "interval": 1800,
+        "states": {
+                   "warning": 20,
+                   "critical": 10
+        },
+        "format": "{icon}",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
+    }
 }

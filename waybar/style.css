@@ -26,7 +26,7 @@ tooltip {
     background: none;
     box-shadow: inherit;
     text-shadow: inherit;
-    padding: 5px;
+    padding: 3px;
 }
 
 #workspaces button.active {
@@ -75,8 +75,8 @@ tooltip {
     background: none;
     padding: 0px 10px;
     margin: 0px;
-    margin-top: 4px;
-    margin-bottom: 1px;
+    margin-top: 3px;
+    margin-bottom: 0px;
 }
 
 #tray {
@@ -85,7 +85,7 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-right: 4px;
+    margin-right: 2px;
     margin-left: 4px;
 }
 
@@ -95,8 +95,8 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-left: 4px;
-    padding-right: 4px;
+    margin-left: 2px;
+    padding-right: 6px;
     padding-left: 4px;
 }
 
@@ -197,9 +197,13 @@ tooltip {
 }
 
 #battery {
+    background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-radius: 0 10px 10px 0;
-    margin-right: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #ebdbb2;
+    border-radius: 0px;
+    border-right: 0px;
     border-left: 0px;
 }
 
@@ -211,7 +215,7 @@ tooltip {
     border-right: 0px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-left: 3px;
+    margin-left: 2px;
 }
 
 #idle_inhibitor {
@@ -234,6 +238,6 @@ tooltip {
     border-radius: 0px 4px 4px 0px;
     border-left: 0px;
     margin-left: 0px;
-    margin-right: 3px;
+    margin-right: 2px;
     padding-right: 16px;
 }
