@@ -32,6 +32,8 @@
 
     min_icon_size = 0
     max_icon_size = 64
+    icon_corners = all
+    icon_corner_radius = 4
 
     icon_path = /usr/share/icons/Gruvbox-Plus-Dark/status/16/:/usr/share/icons/Gruvbox-Plus-Dark/devices/16/:/usr/share/icons/Gruvbox-Plus-Dark/actions/16/:/usr/share/icons/Gruvbox-Plus-Dark/animations/22/:/usr/share/icons/Gruvbox-Plus-Dark/apps/16/:/usr/share/icons/Gruvbox-Plus-Dark/categories/16/:/usr/share/icons/Gruvbox-Plus-Dark/devices/16/:/usr/share/icons/Gruvbox-Plus-Dark/emotes/16/:/usr/share/icons/Gruvbox-Plus-Dark/mimetypes/16/:/usr/share/icons/Gruvbox-Plus-Dark/panel/16/:/usr/share/icons/Gruvbox-Plus-Dark/places/16/
     icon_theme = Gruvbox-Plus-Dark
@@ -43,6 +45,7 @@
     class = Dunst
 
     corner_radius = 4
+    corners = all
     timeout = 7
 
 [urgency_low]
