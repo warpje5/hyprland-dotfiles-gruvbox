@@ -5,13 +5,12 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "ipc": true,
+    "ipc": false,
     "reload_style_on_change": true,
     "height": 0,
     "modules-left": [
         "custom/weather",
         "custom/updates",
-        "idle_inhibitor",
         "hyprland/workspaces"
     ],
     "modules-center": [
@@ -76,6 +75,7 @@
         "scrolllock": false,
         "capslock": true,
         "format": "{icon}",
+        "device-path": "/dev/input/event13",
         "format-icons": {
             "locked": "󰘲",
             "unlocked": ""

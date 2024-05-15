@@ -123,8 +123,7 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 0px;
-    border-right: 0px;
+    border-radius: 0px 4px 4px 0px;
     border-left: 0px;
 }
 
