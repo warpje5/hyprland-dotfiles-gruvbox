@@ -18,6 +18,7 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
+    color: #ebdbb2;
 }
 
 #workspaces button {
@@ -26,6 +27,7 @@ tooltip {
     background: none;
     box-shadow: inherit;
     text-shadow: inherit;
+    color: #928374;
     padding: 3px;
 }
 
@@ -75,7 +77,7 @@ tooltip {
     background: none;
     padding: 0px 10px;
     margin: 0px;
-    margin-top: 3px;
+    margin-top: 5px;
     margin-bottom: 0px;
 }
 
@@ -85,8 +87,9 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-right: 2px;
+    margin-right: 4px;
     margin-left: 4px;
+    color: #ebdbb2;
 }
 
 #workspaces {
@@ -95,7 +98,7 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-left: 2px;
+    margin-left: 4px;
     padding-right: 6px;
     padding-left: 4px;
 }
@@ -123,8 +126,9 @@ tooltip {
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 0px 4px 4px 0px;
+    border-radius: 0px;
     border-left: 0px;
+    border-right: 0px;
 }
 
 #window {
@@ -135,6 +139,7 @@ tooltip {
     border-radius: 4px;
     margin-left: 30px;
     margin-right: 30px;
+    color: #ebdbb2;
 }
 
 #custom-playerctl {
@@ -144,6 +149,7 @@ tooltip {
     border-color: #ebdbb2;
     border-right: 0px;
     border-left: 0px;
+    color: #ebdbb2;
 }
 
 #cava {
@@ -154,6 +160,7 @@ tooltip {
     border-color: #ebdbb2;
     border-right: 0px;
     margin-left: 4px;
+    color: #ebdbb2;
 }
 
 #clock {
@@ -214,7 +221,7 @@ tooltip {
     border-right: 0px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-left: 2px;
+    margin-left: 4px;
 }
 
 #idle_inhibitor {
@@ -237,6 +244,6 @@ tooltip {
     border-radius: 0px 4px 4px 0px;
     border-left: 0px;
     margin-left: 0px;
-    margin-right: 2px;
+    margin-right: 4px;
     padding-right: 16px;
 }
