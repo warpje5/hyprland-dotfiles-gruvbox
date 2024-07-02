@@ -1,3 +1,9 @@
+How it looks
+![image](https://github.com/warpje5/hyprland-dotfiles-gruvbox/assets/125624948/372fb847-4a0e-4dd7-a725-de5900fc3b4a)
+
+
+02/07/24 - getting back to gruvbox from solarized jorney. expect more fresh tweaks
+
 18/04/24 - i broke hyrland config into pieces, minor tweaks
 
 12/04/24 - now we need waybay-cava instead of regular waybar. waybar config cleaned a bit, fixing height to match gaps
