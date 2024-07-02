@@ -1,5 +1,5 @@
 How it looks
-![image](https://github.com/warpje5/hyprland-dotfiles-gruvbox/assets/125624948/372fb847-4a0e-4dd7-a725-de5900fc3b4a)
+![image](https://github.com/warpje5/hyprland-dotfiles-gruvbox/assets/125624948/463a9b5a-7d1f-44cf-9c89-d606ef262d05)
 
 
 02/07/24 - getting back to gruvbox from solarized jorney. expect more fresh tweaks
