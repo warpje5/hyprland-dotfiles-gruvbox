@@ -2,8 +2,10 @@
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
 export PATH="$PATH:/home/warp/.dotnet/tools"
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOPATH/bin
 export MANPATH="/usr/local/man:$MANPATH"
-
+# export PATH="$HOME/.local/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -28,7 +30,7 @@ HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode auto # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -63,7 +65,7 @@ ENABLE_CORRECTION="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -74,24 +76,25 @@ ENABLE_CORRECTION="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  docker
-  python
-  golang
-  bundler
-  dotenv
-  macos
-  rake
-  rbenv
-  ruby
-  zsh-autosuggestions
-  zsh-history-substring-search
-  you-should-use
-  zsh-syntax-highlighting
-  starship
-  emacs
-  archlinux
-  aliases
+    archlinux
+    aliases
+    colorize
+    docker
+    emacs
+    eza
+    fzf
+    fzf-tab
+    git
+    golang
+    python
+    rust
+    starship
+    vscode
+    you-should-use
+    zoxide
+    zsh-autosuggestions
+    zsh-history-substring-search
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -101,31 +104,30 @@ source $ZSH/oh-my-zsh.sh
 # vi mode
 bindkey -v
 
-# Add "jj" shortcut to enter NORMAL mode
+# Add "jk" shortcut to enter NORMAL mode
 bindkey -M viins 'jk' vi-cmd-mode
 
 # Yank to the system clipboard
 function vi-yank-xclip {
     zle vi-yank
-   echo "$CUTBUFFER" | wl-copy -n
+    echo "$CUTBUFFER" | wl-copy -n
 }
 
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
-
 
 # You may need to manually set your language environment
 export LANG=ru_RU.UTF-8
 
 # Preferred editor for local and remote sessions
 
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='emacsclient -t'
-   export VISUAL='emacsclient -t'
- else
-   export EDITOR='emacsclient -t'
-   export VISUAL='emacsclient -t'
- fi
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='emacsclient -t'
+    export VISUAL='emacsclient -t'
+else
+    export EDITOR='emacsclient -t'
+    export VISUAL='emacsclient -t'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
