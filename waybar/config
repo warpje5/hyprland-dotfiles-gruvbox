@@ -10,8 +10,6 @@
     "height": 0,
     "modules-left": [
         "custom/weather",
-        "custom/updates",
-        "idle_inhibitor",
         "hyprland/workspaces"
     ],
     "modules-center": [
@@ -25,6 +23,7 @@
         "tray",
         "hyprland/language",
         "clock",
+        "idle_inhibitor",
         "custom/power"
     ],
     "hyprland/window": {
@@ -34,20 +33,24 @@
         "disable-scroll": false,
         "all-outputs": true,
         "show-special": true,
-        "on-scroll-up": "hyprctl dispatch workspace e-1",
-        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        "on-scroll-up": "hyprctl dispatch workspace m-1",
+        "on-scroll-down": "hyprctl dispatch workspace m+1",
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
-              "1": "",
-              "2": "",
-              "3": "",
-              "4": "",
-              "5": "",
-              "6": "",
+              "1": "󰟀",
+              "2": "󰉋",
+              "3": "󰐌",
+              "4": "󰺻",
+              "5": "󰓇",
+              "6": "󰌀",
+              "7": "󰭹",
+              "8": "",
+              "9": "󰌽",
+              "10": "󰚌",
               "urgent": "",
-              "default": "",
-              "magic": "",
+              "default": "󰐗",
+              "magic": "󰓏",
         },
         "persistent-workspaces": {
             "1": [],
@@ -55,6 +58,11 @@
             "3": [],
             "4": [],
             "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": [],
         },
         "sort-by-number": true,
     },
@@ -78,13 +86,14 @@
         "format": "{icon}",
         "device-path": "/dev/input/event13",
         "format-icons": {
-            "locked": "󰘲",
+            "locked": "󰪛",
             "unlocked": ""
         }
     },   
     "idle_inhibitor": {
         "tooltip": false,
         "format": "{icon}",
+        "start-activated": false,
         "format-icons": {
             "activated": " ",
             "deactivated": " "
@@ -98,8 +107,8 @@
         "return-type" : "json"
     },
     "tray": {
-        "icon-size": 12,
-        "spacing": 7
+        "icon-size": 11,
+        "spacing": 8
     },
     "clock": {
         "locale": "ru_RU.UTF-8",
@@ -110,10 +119,10 @@
             "mode": "year",
             "mode-mon-col": 3,
             "format": {
-                "months":     "<span color='#98971a'><b>{}</b></span>",
+                "months":     "<span color='#504945'><b>{}</b></span>",
                 "days":       "<span color='#ebdbb2'><b>{}</b></span>",
-                "weeks":      "<span color='#7c6f64'><b>W{}</b></span>",
-                "weekdays":   "<span color='#fabd2f'><b>{}</b></span>",
+                "weeks":      "<span color='#928374'><b>W{}</b></span>",
+                "weekdays":   "<span color='#7c6f64'><b>{}</b></span>",
                 "today":      "<span color='#d79921'><b><u>{}</u></b></span>"
             }
         }
@@ -137,7 +146,7 @@
         }
     },
     "custom/power": {
-        "format": "⏻",
+        "format": "",
         "tooltip": false,
         "on-click": "wlogout -b 5 --protocol layer-shell"
     },

@@ -1,7 +1,7 @@
 * {
     border: none;
-    font-family: BlexMono Nerd Font;
-    font-weight: 700;
+    font-family: JuliaMono;
+    font-weight: 800;
     font-size: 13px;
     min-height: 0;
 }
@@ -29,10 +29,8 @@ tooltip {
     text-shadow: inherit;
     color: #928374;
     padding: 3px;
-}
-
-#workspaces button.active {
-    color: #ebdbb2;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 #workspaces button.persistent {
@@ -43,15 +41,19 @@ tooltip {
     color: #504945;
 }
 
+#workspaces button.special {
+    color: #b8bb26;
+}
+
+#workspaces button.visible {
+    color: #ebdbb2;
+}
+
 #workspaces button:hover {
     color: #d79921;
 }
 
-#workspaces button.special {
-    color: #fabd2f;
-}
-
-#workspaces button.visible {
+#workspaces button.active {
     color: #ebdbb2;
 }
 
@@ -89,6 +91,9 @@ tooltip {
     border-color: #ebdbb2;
     margin-right: 4px;
     margin-left: 4px;
+    padding-right: 8px;
+    padding-left: 9px;
+    padding-top: 2px;
     color: #ebdbb2;
 }
 
@@ -118,17 +123,18 @@ tooltip {
     background: none;
     color: #ebdbb2;
     border: none;
+    padding-top: 1px;
 }
 
 #custom-updates {
     background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
+    border-radius: 4px 0px 0px 4px;
     border-width: 2px;
+    border-right: 0px;
     border-style: solid;
     border-color: #ebdbb2;
-    border-radius: 0px;
-    border-left: 0px;
-    border-right: 0px;
+    margin-left: 4px;
 }
 
 #window {
@@ -216,12 +222,13 @@ tooltip {
 #custom-weather {
     background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-radius: 4px 0px 0px 4px;
+    border-radius: 4px;
     border-width: 2px;
-    border-right: 0px;
     border-style: solid;
     border-color: #ebdbb2;
     margin-left: 4px;
+    padding-right: 7px;
+    padding-top: 1px;
 }
 
 #idle_inhibitor {
@@ -231,8 +238,11 @@ tooltip {
     border-style: solid;
     border-color: #ebdbb2;
     border-left: 0px;
-    border-radius: 0px 4px 4px 0px;
+    border-right: 0px;
+    border-radius: 0px;
     min-width: 18px;
+    margin-left: -4px;
+    margin-right: -4px;
 }
 
 #custom-power {
