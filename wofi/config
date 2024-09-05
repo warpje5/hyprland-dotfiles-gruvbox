@@ -1,4 +1,4 @@
-width=450
+width=420
 height=520
 location=center
 columns=1
@@ -9,6 +9,8 @@ allow_markup=true
 dmenu-parse_actions=true
 no_actions=false
 halign=fill
+valign=start
+content_halign=fill
 orientation=vertical
 insensitive=true
 allow_images=true
@@ -19,7 +21,9 @@ term=kitty
 hide_scroll=false
 normal_window=true
 line_wrap=word
-dymanic_lines=true
+dynamic_lines=true
+matching=multi-contains
+pre_display_exec=true
 
 key_down=Ctrl-j
 key_up=Ctrl-k
