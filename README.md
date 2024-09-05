@@ -1,5 +1,7 @@
 How it looks
 ![image](https://github.com/user-attachments/assets/74e536a8-e9c9-429b-b5d4-7c20327e749b)
+you can disable dimming for inactive windows, if you want
+
 
 
 05/09/24 - minor tweaks, remapping for qwerty, and changing mono font to JuliaMono. you still need ttf-nerd-fonts-symbols. also there's a new config for hypridle, but ill keep swayidle config in this repo just in case.
