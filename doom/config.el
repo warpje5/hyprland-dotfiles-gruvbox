@@ -21,11 +21,11 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-(setq doom-font "BlexMono Nerd Font-14")
-(setq doom-variable-pitch-font "IBM Plex Sans-14")
-(setq doom-serif-font "IBM Plex Serif-14")
+;; (setq doom-font (font-spec :family "Terminess Nerd Font" :size 20 :weight 'Medium)
+;;       doom-variable-pitch-font (font-spec :family "IBM Plex Sans" :size 13))
+(setq doom-font "JuliaMono-11")
+(setq doom-variable-pitch-font "IBM Plex Sans-12")
+(setq doom-serif-font "IBM Plex Serif-12")
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -36,7 +36,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-miramare)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -79,10 +79,16 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; (require 'dap-lldb)
+(require 'dap-cpptools)
+
+;; adds scroll option
 (setq which-key-use-C-h-commands 't)
 
-(setq byte-compile-warnings '(cl-functions))
+;; removes compile warning at launch
+;; (setq byte-compile-warnings '(cl-functions))
 
+;; debugger config
 (after! dap-mode (setq dap-python-debugger 'debugpy))
 
 (map! :map dap-mode-map
@@ -115,3 +121,126 @@
       :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
       :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
       :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+
+;; Improve org mode looks
+(setq-default org-startup-indented t
+              org-pretty-entities t
+              org-use-sub-superscripts "{}"
+              org-hide-emphasis-markers t
+              org-startup-with-inline-images t
+              org-image-actual-width '(300))
+
+;; CPP LSP and stuff
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"
+                                "--header-insertion-decorators=0"))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
+
+;; (set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
+
+;; Rust LSP and DAP stuff
+(use-package dap-mode
+  :ensure
+  :config
+  (dap-ui-mode)
+  (dap-ui-controls-mode 1)
+
+  (require 'dap-lldb)
+  (require 'dap-cpptools)
+  (require 'dap-gdb-lldb)
+  ;; installs .extension/vscode
+  (dap-gdb-lldb-setup)
+  (dap-cpptools-setup)
+  (dap-register-debug-template "Rust::CppTools Run Configuration"
+                               (list :type "cppdbg"
+                                     :request "launch"
+                                     :name "Rust::Run"
+                                     :MIMode "gdb"
+                                     :miDebuggerPath "rust-gdb"
+                                     :environment []
+                                     :program "${workspaceFolder}/target/debug/REPLACETHIS"
+                                     :cwd "${workspaceFolder}"
+                                     :console "external"
+                                     :dap-compilation "cargo build"
+                                     :dap-compilation-dir "${workspaceFolder}")))
+
+(with-eval-after-load 'dap-mode
+  (setq dap-default-terminal-kind "integrated") ;; Make sure that terminal programs open a term for I/O in an Emacs buffer
+  (dap-auto-configure-mode +1))
+
+(setq lsp-inlay-hints-mode t)
+(setq lsp-inlay-hint-enable t)
+
+(setq lsp-rust-analyzer-server-format-inlay-hints t)
+(setq lsp-rust-analyzer-closure-return-type-hints t)
+(setq lsp-rust-analyzer-discriminants-hints t)
+;; (setq lsp-rust-analyzer-expression-adjustment-hints t)
+;; (setq lsp-rust-analyzer-expression-adjustment-hints-mode t)
+(setq lsp-rust-analyzer-closure-capture-hints t)
+(setq lsp-rust-analyzer-display-chaining-hints t)
+(setq lsp-rust-analyzer-display-lifetime-elision-hints-enable t)
+(setq lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names t)
+(setq lsp-rust-analyzer-display-closure-return-type-hints t)
+(setq lsp-rust-analyzer-display-parameter-hints t)
+;; (setq lsp-rust-analyzer-display-reborrow-hints t)
+(setq lsp-rust-analyzer-binding-mode-hints t)
+(setq lsp-rust-analyzer-closing-brace-hints t)
+(setq lsp-rust-analyzer-closing-brace-hints-min-lines t)
+
+
+;; Making completion faster by this
+(after! gcmh
+  ;; 32mb, or 64mb, or *maybe* 128mb, BUT NOT 512mb (the default value = 33554432)
+  (setq gcmh-high-cons-threshold  (* 64 1024 1024))) ;; This is set to 64mb
+(setq inhibit-compacting-font-caches nil)
+
+;; Company settings
+;; (setq company-minimum-prefix-length 1)
+;; (setq company-idle-delay 0.01)
+;; (setq company-box-doc-delay 0.01)
+;; (setq company-tooltip-idle-delay 0.01)
+
+;; Corfu settings
+(after! corfu
+  (setq corfu-preview-current t
+        corfu-preselect 'directory
+        completion-styles '(orderless basic partial-completion)
+        corfu-auto-prefix 1
+        corfu-auto-delay 0.05))
+
+;; Flyspells settings
+(require 'ispell)
+(add-to-list 'ispell-local-dictionary-alist '("ru_RU"
+                                              "[[:alpha:]]"
+                                              "[^[:alpha:]]"
+                                              "[']"
+                                              t
+                                              ("-d" "ru_RU"); Dictionary file name
+                                              nil
+                                              utf-8))
+
+(add-to-list 'ispell-local-dictionary-alist '("en_US"
+                                              "[[:alpha:]]"
+                                              "[^[:alpha:]]"
+                                              "[']"
+                                              t
+                                              ("-d" "en_US")
+                                              nil
+                                              utf-8))
+
+(setq ispell-program-name "hunspell"          ; Use hunspell to correct mistakes
+      ispell-dictionary   "en_US")            ; Default dictionary to use
+
+(defun  fd-switch-dictionary()
+  "Switch russian and english dictionaries."
+  (interactive)
+  (let* ((dict ispell-current-dictionary)
+         (new (if (string= dict "ru_RU") "en_US"
+                "ru_RU")))
+    (ispell-change-dictionary new)
+    (message "Switched dictionary from %s to %s" dict new)))
+
+(global-set-key (kbd "<f8>") 'fd-switch-dictionary)  ; F8 to switch language
