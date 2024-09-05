@@ -1,5 +1,6 @@
 How it looks
-![image](https://github.com/warpje5/hyprland-dotfiles-gruvbox/assets/125624948/463a9b5a-7d1f-44cf-9c89-d606ef262d05)
+![image](https://github.com/user-attachments/assets/74e536a8-e9c9-429b-b5d4-7c20327e749b)
+
 
 05/09/24 - minor tweaks, remapping for qwerty, and changing mono font to JuliaMono. you still need ttf-nerd-fonts-symbols. also there's a new config for hypridle, but ill keep swayidle config in this repo just in case.
 
