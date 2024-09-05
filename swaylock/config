@@ -1,23 +1,23 @@
 ignore-empty-password
-font=BlexMono Nerd Font
+font=JuliaMono
 
 clock
 timestr=%R
 
-image=~/.config/swaylock/solar-system.jpg
+image=~/.config/hypr/wallpapers/pc.jpg
 
 fade-in=0.4
 
 indicator-idle-visible
-hide-keyboard-layout
+# hide-keyboard-layout
 
-effect-blur=6x2
-#effect-greyscale
+# effect-blur=6x2
+# effect-greyscale
 effect-scale=1
 
 indicator
-indicator-radius=150
-indicator-thickness=20
+indicator-radius=120
+indicator-thickness=10
 indicator-caps-lock
 
 key-hl-color=458588d9
@@ -51,3 +51,7 @@ bs-hl-color=b57614d9
 caps-lock-key-hl-color=9d0006d9
 caps-lock-bs-hl-color=ebdbb2d9
 text-caps-lock-color=ebdbb2d9
+
+layout-bg-color=282828d9
+layout-border-color=ebdbb2ff
+layout-text-color=ebdbb2ff
