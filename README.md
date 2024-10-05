@@ -4,6 +4,8 @@ you can disable dimming for inactive windows, if you want
 
 
 
+06/10/24 - waybar tweaks, changing font IBM Plex Sans -> Inter, minor fixes
+
 05/09/24 - minor tweaks, remapping for qwerty, and changing mono font to JuliaMono. you still need ttf-nerd-fonts-symbols. also there's a new config for hypridle, but ill keep swayidle config in this repo just in case.
 
 02/07/24 - getting back to gruvbox from solarized jorney. expect more fresh tweaks
