@@ -1,5 +1,6 @@
 How it looks
-![image](https://github.com/user-attachments/assets/1d664e08-8549-4021-914e-b130c804011c)
+![image](https://github.com/user-attachments/assets/71acf354-fd8a-417d-aaff-d06b7440686d)
+
 
 you can disable dimming for inactive windows, if you want
 
