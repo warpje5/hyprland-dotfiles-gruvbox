@@ -1,11 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
-export PATH="$HOME/.config/emacs/bin:$PATH"
-export PATH="$PATH:/home/warp/.dotnet/tools"
-export GOPATH="$HOME/go"
-export PATH=$PATH:$GOPATH/bin
 export MANPATH="/usr/local/man:$MANPATH"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:/home/warp/.dotnet/tools"
+export PATH="$HOME/.config/emacs/bin:$PATH"
+export PATH="$PATH:/home/warp/.spicetify"
 # export PATH="$HOME/.local/bin:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -99,7 +101,12 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# ####### User configuration #######
+
+# For starship in emacs env shells
+if [ "$TERM" = "dumb" ]; then
+    export TERM=xterm-kitty
+fi
 
 # vi mode
 bindkey -v
@@ -130,7 +137,7 @@ else
 fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
