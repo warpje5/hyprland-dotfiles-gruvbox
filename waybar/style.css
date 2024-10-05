@@ -129,12 +129,11 @@ tooltip {
 #custom-updates {
     background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-radius: 4px 0px 0px 4px;
+    border-radius: 0px 4px 4px 0px;
     border-width: 2px;
-    border-right: 0px;
+    border-left: 0px;
     border-style: solid;
     border-color: #ebdbb2;
-    margin-left: 4px;
 }
 
 #window {
@@ -222,10 +221,11 @@ tooltip {
 #custom-weather {
     background: rgba(40, 40, 40, 0.92);
     color: #ebdbb2;
-    border-radius: 4px;
+    border-radius: 4px 0px 0px 4px;
     border-width: 2px;
     border-style: solid;
     border-color: #ebdbb2;
+    border-right: 0px;
     margin-left: 4px;
     padding-right: 7px;
     padding-top: 1px;
