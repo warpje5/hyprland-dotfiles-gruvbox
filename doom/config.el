@@ -21,11 +21,9 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-;; (setq doom-font (font-spec :family "Terminess Nerd Font" :size 20 :weight 'Medium)
-;;       doom-variable-pitch-font (font-spec :family "IBM Plex Sans" :size 13))
-(setq doom-font "JuliaMono-11")
-(setq doom-variable-pitch-font "IBM Plex Sans-12")
-(setq doom-serif-font "IBM Plex Serif-12")
+(setq doom-font (font-spec :family "JuliaMono" :size 15)
+      doom-variable-pitch-font (font-spec :family "Inter" :size 15)
+      doom-serif-font (font-spec :family "IBM Plex Serif" :size 15))
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -36,7 +34,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-(setq doom-theme 'doom-miramare)
+(setq doom-theme 'doom-gruvbox)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -244,3 +242,8 @@
     (message "Switched dictionary from %s to %s" dict new)))
 
 (global-set-key (kbd "<f8>") 'fd-switch-dictionary)  ; F8 to switch language
+
+;; Use lsp-format-buffer on save for Java files
+(add-hook 'java-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook #'lsp-format-buffer nil t)))
