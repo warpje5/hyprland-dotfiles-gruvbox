@@ -2,11 +2,12 @@
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
-export PATH="$PATH:/home/warp/.dotnet/tools"
+export JAVA_HOME="/usr/lib/jvm/default/"
+export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
-export PATH="$PATH:/home/warp/.spicetify"
-# export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.spicetify:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+# export PATH="$HOME/warp/.dotnet/tools:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -82,16 +83,19 @@ plugins=(
     aliases
     colorize
     docker
+    docker-compose
     emacs
     eza
     fzf
     fzf-tab
     git
     golang
+    kitty
+    mvn
+    poetry
     python
     rust
     starship
-    vscode
     you-should-use
     zoxide
     zsh-autosuggestions
@@ -136,6 +140,12 @@ else
     export VISUAL='emacsclient -t'
 fi
 
+# Fzf gruvbox theme
+export FZF_DEFAULT_OPTS='--color=fg:#ebdbb2,bg:#282828,hl:#d79921,fg+:'
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS'#fbf1c7,bg+:#3c3836,hl+:#d79921,"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS'info:#b8bb26,prompt:#fe8019,"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS'spinner:#fb4934,header:#83a598'"
+
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
@@ -146,3 +156,6 @@ export ARCHFLAGS="-arch x86_64"
 #
 alias zshconfig="emacsclient -t ~/.zshrc"
 alias ohmyzsh="emacsclient -t ~/.oh-my-zsh"
+
+# Source configs
+source ~/.zsh/zsh-highlight-config.zsh
