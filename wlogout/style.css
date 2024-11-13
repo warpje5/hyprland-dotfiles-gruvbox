@@ -1,91 +1,91 @@
 window {
-    font-family: JuliaMono;
-    font-size: 14pt;
-    color: #ebdbb2; /* text */
-    background-color: rgba(40, 40, 40, 0.76);
+  font-family: Hack Nerd Font;
+  font-size: 14pt;
+  color: #ebdbb2; /* text */
+  background-color: rgba(40, 40, 40, 0.76);
 }
 
 button {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 50%;
-    border-style: solid;
-    border-radius: 4px;
-    border-width: 2px;
-    border-color: #ebdbb2;
-    background-color: rgba(40, 40, 40, 0.76);
-    margin: 10px;
-    transition:
-        box-shadow 0.3s ease-in-out,
-        background-color 0.3s ease-in-out;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+  border-style: solid;
+  border-radius: 4px;
+  border-width: 2px;
+  border-color: #ebdbb2;
+  background-color: rgba(40, 40, 40, 0.76);
+  margin: 10px;
+  transition:
+    box-shadow 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: rgba(104, 157, 106, 0.92);
-    color: #282828;
+  background-color: rgba(104, 157, 106, 0.92);
+  color: #282828;
 }
 
 button:focus {
-    background-color: #ebdbb2;
-    color: #282828;
+  background-color: #ebdbb2;
+  color: #282828;
 }
 
 #lock {
-    background-image: image(url("./lock.png"));
+  background-image: image(url("./lock.png"));
 }
 #lock:focus {
-    background-image: image(url("./lock-hover.png"));
+  background-image: image(url("./lock-hover.png"));
 }
 #lock:hover {
-    background-image: image(url("./lock-hover.png"));
+  background-image: image(url("./lock-hover.png"));
 }
 
 #logout {
-    background-image: image(url("./logout.png"));
+  background-image: image(url("./logout.png"));
 }
 #logout:focus {
-    background-image: image(url("./logout-hover.png"));
+  background-image: image(url("./logout-hover.png"));
 }
 #logout:hover {
-    background-image: image(url("./logout-hover.png"));
+  background-image: image(url("./logout-hover.png"));
 }
 
 #suspend {
-    background-image: image(url("./sleep.png"));
+  background-image: image(url("./sleep.png"));
 }
 #suspend:focus {
-    background-image: image(url("./sleep-hover.png"));
+  background-image: image(url("./sleep-hover.png"));
 }
 #suspend:hover {
-    background-image: image(url("./sleep-hover.png"));
+  background-image: image(url("./sleep-hover.png"));
 }
 
 #shutdown {
-    background-image: image(url("./power.png"));
+  background-image: image(url("./power.png"));
 }
 #shutdown:focus {
-    background-image: image(url("./power-hover.png"));
+  background-image: image(url("./power-hover.png"));
 }
 #shutdown:hover {
-    background-image: image(url("./power-hover.png"));
+  background-image: image(url("./power-hover.png"));
 }
 
 #reboot {
-    background-image: image(url("./restart.png"));
+  background-image: image(url("./restart.png"));
 }
 #reboot:focus {
-    background-image: image(url("./restart-hover.png"));
+  background-image: image(url("./restart-hover.png"));
 }
 #reboot:hover {
-    background-image: image(url("./restart-hover.png"));
+  background-image: image(url("./restart-hover.png"));
 }
 
 #windows {
-    background-image: image(url("./windows.png"));
+  background-image: image(url("./windows.png"));
 }
 #windows:focus {
-    background-image: image(url("./windows-hover.png"));
+  background-image: image(url("./windows-hover.png"));
 }
 #windows:hover {
-    background-image: image(url("./windows-hover.png"));
+  background-image: image(url("./windows-hover.png"));
 }
