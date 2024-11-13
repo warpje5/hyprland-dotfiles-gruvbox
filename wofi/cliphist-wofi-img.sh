@@ -15,12 +15,12 @@ cliphist_list="$(cliphist list)"
 
 # delete thumbnails in cache but not in cliphist
 for thumb in "$thumb_dir"/*; do
-    clip_id="${thumb##*/}"
-    clip_id="${clip_id%.*}"
-    check=$(rg <<<"$cliphist_list" "^$clip_id\s")
-    if [ -z "$check" ]; then
-        >&2 rm -v "$thumb"
-    fi
+	clip_id="${thumb##*/}"
+	clip_id="${clip_id%.*}"
+	check=$(rg <<<"$cliphist_list" "^$clip_id\s")
+	if [ -z "$check" ]; then
+		>&2 rm -v "$thumb"
+	fi
 done
 
 # remove unnecessary image tags
@@ -43,11 +43,14 @@ choice=$(gawk <<<$cliphist_list "$prog" | wofi -I --dmenu)
 [ -z "$choice" ] && exit 1
 
 if [ "${choice::4}" = "img:" ]; then
-    thumb_file="${choice:4}"
-    clip_id="${thumb_file##*/}"
-    clip_id="${clip_id%.*}\t"
+	thumb_file="${choice:4}"
+	clip_id="${thumb_file##*/}"
+	clip_id="${clip_id%.*}\t"
 else
-    clip_id="${choice}"
+	clip_id="${choice}"
 fi
+
+# Copy the selected clip content to the clipboard
+cliphist decode <<<"$clip_id" | wl-copy
 
 printf "$clip_id" | cliphist decode
