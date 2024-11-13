@@ -51,7 +51,7 @@
               "10": "󰚌",
               "urgent": "",
               "default": "󰐗",
-              "magic": "󰓏",
+              "magic": "󰓏"
         },
         "persistent-workspaces": {
             "1": [],
@@ -63,31 +63,30 @@
             "7": [],
             "8": [],
             "9": [],
-            "10": [],
+            "10": []
         },
-        "sort-by-number": true,
+        "sort-by-number": true
     },
     "custom/updates": {
         "format": "󰚰 {}",
         "interval": 300,                     // every 5 min
         "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",       // # of updates and tooltip details
         "exec-if": "exit 0",                  // always run; consider advanced run conditions
-        "on-click": "kitty -e sudo pacman -Syu", // update system
+        "on-click": "kitty -e yay -Syu", // update system
         "signal": 8
     },
     "hyprland/language": {
         "format": "{}",
-        "format-en": "Eng",
-        "format-ru": "Rus"
+        "format-en": "English",
+        "format-ru": "Русский"
     },
     "keyboard-state": {
         "numlock": false,
         "scrolllock": false,
         "capslock": true,
         "format": "{icon}",
-        "device-path": "/dev/input/event13",
         "format-icons": {
-            "locked": "󰪛",
+            "locked": "Capslock",
             "unlocked": ""
         }
     },   
@@ -115,7 +114,7 @@
         "locale": "ru_RU.UTF-8",
         "timezone": "Europe/Moscow",
         "format": "{:L%R  %d/%m %a}",
-        "tooltip-format": "<span font='BlexMono Nerd Font Bold 11'><tt><small>{calendar}</small></tt></span>",
+        "tooltip-format": "<span font='JuliaMono 11'><tt><small>{calendar}</small></tt></span>",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
