@@ -13,7 +13,10 @@ Fonts used - Hack, Hack Nerd Font, Inter (we always get back to the basics)
 
 Necessary apps - playerctl, hyprshot, nm-applet,
 blueman-applet, nwg-look, swaylock-effects!!!, wlogout!!!, 
-gammastep, starship, cliphist and everything for it, 
+gammastep, starship, cliphist and everything for it.
+
+I use waybar compiled with cava support. If you use arch you can install
+waybar-cava package from aur, its the same thing.
 
 keep in mind, theme looks way better with gammastep warm colors, place your location in config 
 to switch between day/night modes automatically
