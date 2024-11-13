@@ -1,5 +1,6 @@
 How it looks
-![image](https://github.com/user-attachments/assets/71acf354-fd8a-417d-aaff-d06b7440686d)
+![image](https://github.com/user-attachments/assets/37470ffe-0ac1-4c3d-acf2-0e2c0534dfc2)
+
 
 
 Cursors - capitaine cursors gruvbox (gnome-look.org)
