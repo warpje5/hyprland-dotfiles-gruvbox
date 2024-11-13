@@ -6,11 +6,11 @@ Cursors - capitaine cursors gruvbox (gnome-look.org)
 
 Icons - gruvbox-plus-dark
 
-Theme - gruvbox-dark-bl-lb
+GTK Theme - gruvbox-dark-medium-bl-lb
 
-Fonts used - IBM Plex font family, BlexMono Nerd Font
+Fonts used - Hack, Hack Nerd Font, Inter (we always get back to the basics)
 
-Necessary apps - playerctl, hyprshot, nm-applet, 
+Necessary apps - playerctl, hyprshot, nm-applet, kvantum
 blueman-applet, nwg-look, swaylock-effects!!!, wlogout!!!, gammastep, starship, cliphist and everything for it, 
 
 keep in mind, theme looks way better with gammastep warm colors, place your location in config 
